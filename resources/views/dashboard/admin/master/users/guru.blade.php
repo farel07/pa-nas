@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Master User : Guru</h1>
 </div>
-
+<a href="/admin/master/user" class="btn btn-warning mb-3">Kembali</a>
 <a href="/admin/master/user/guru/create_guru" class="btn btn-primary mb-3">Tambah Data Siswa</a>
 
 <div class="col-md-6">
@@ -45,7 +45,16 @@
                     {{ $mapel->nama_mapel }} <br>
                     @endforeach
                 </td>
-                  <td></td>
+                  <td>
+                    <form action="/admin/master/user/{{ $g->id }}" method="post">
+                      @csrf
+                      @method('delete')
+                    <a href="/admin/master/user/{{ $g->id }}/edit" class="btn btn-primary rounded-circle"><i class="fas fa-edit"></i></a>
+                      
+                    <button class="btn btn-danger rounded-circle" type="submit" onclick="return confirm('affkh anda yakin >/<')"><i class="fas fa-trash"></i></button>
+
+                  </form>
+                  </td>
                 </tr>
 
                 @endforeach

@@ -7,6 +7,8 @@ use App\Models\Kelas_User;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class UserController extends Controller
 {
     /**
@@ -78,7 +80,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        // return view('dashboard.admin.master.users.show_siswa');
+        return redirect()->back();
     }
 
     /**
@@ -89,7 +92,18 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        $data = [
+            'user' => User::find($id)
+        ];
+
+        if($user->role_id == 3){
+            $data['kelas'] = Kelas::all();
+            return view('dashboard.admin.master.users.edit_siswa', $data);
+        } elseif($user->role_id == 2){
+            return view('dashboard.admin.master.users.edit_guru', $data);
+        }
     }
 
     /**
@@ -101,7 +115,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|min:6',
+            'nisn_npsn' => 'required|max:12',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required|date',
+        ]);
+
+        if($request->is_siswa){
+
+            $request->validate(['kelas_id' => 'required']);
+            Kelas_User::where('user_id', $id)->update(['kelas_id' => $request->kelas_id]);
+            $to = 'siswa';
+        } else if($request->is_guru){
+
+            $to = 'guru';
+        }
+
+        User::where('id', $id)->update($validatedData);
+
+        return redirect('/admin/master/user/' . $to)->with('success', 'Data ' . $to . ' berhasil diupdate!');
+
     }
 
     /**
@@ -112,7 +146,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        User::destroy($id);
+
+        if($user->role_id == 3){
+            $to = 'siswa';
+        } else if($user->role_id == 2){
+            $to = 'guru';
+        }
+
+        return redirect('/admin/master/user/' . $to)->with('success', 'Data ' . $to . ' berhasil dihapus!');
     }
 
     public function siswa()

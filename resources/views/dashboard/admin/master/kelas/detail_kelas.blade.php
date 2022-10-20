@@ -1,9 +1,7 @@
-@extends('dashboard.layout.main')
+@extends('dashboard.layout.new_main')
+@section('menu', 'Master')
+@section('submenu', 'Kelas - List Siswa - ' . $kelas->nama_kelas)
 @section('content')
-
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Kelas: {{ $kelas->nama_kelas }}</h1>
-</div>
 
 <div class="row">
 <div class="col-md-12">
@@ -12,8 +10,8 @@
             <thead>
               <tr class="table-primary">
                 <th scope="col">NO</th>
-                <th scope="col">NAMA</th>
                 <th scope="col">NISN</th>
+                <th scope="col">NAMA</th>
             </tr>
             </thead>
             <tbody>
@@ -21,8 +19,8 @@
                     
                 <tr>
                   <th scope="row">{{ $loop->iteration }}</th>
-                  <td>{{ $ku->user->name }}</td>
                   <td>{{ $ku->user->nisn_npsn }}</td>
+                  <td>{{ $ku->user->name }}</td>
                 </tr>
 
                 @endforeach

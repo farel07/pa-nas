@@ -1,9 +1,7 @@
-@extends('dashboard.layout.main')
+@extends('dashboard.layout.new_main')
+@section('menu', 'Master')
+@section('submenu', 'Kelas - Create')
 @section('content')
-
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create Kelas</h1>
-</div>
 
 <div class="row">
     <div class="col-8">

@@ -1,9 +1,7 @@
-@extends('dashboard.layout.main')
+@extends('dashboard.layout.new_main')
+@section('menu', 'Admin')
+@section('submenu', 'Dokumentasi')
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Dokumentasi</h1>
-  </div>
-
 
   <br>
 

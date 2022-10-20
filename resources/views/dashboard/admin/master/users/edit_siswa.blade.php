@@ -1,9 +1,7 @@
-@extends('dashboard.layout.main')
+@extends('dashboard.layout.new_main')
+@section('menu', 'Master')
+@section('submenu', 'User - Siswa - Edit')
 @section('content')
-
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Edit Data Siswa</h1>
-</div>
 
 <div class="row">
     <div class="col-8">
@@ -62,8 +60,8 @@
                 <p class="text-danger">{{ $message }}</p>
                 @enderror
               </div>
+              <a href="/admin/master/user/siswa" class="btn btn-warning">Kembali</a> 
               <button type="submit" class="btn btn-primary">Tambah</button>
-              <a href="/admin/master/user/siswa" class="btn btn-warning">Back</a> 
               
             </form>
 

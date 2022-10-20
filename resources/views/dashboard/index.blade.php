@@ -1,13 +1,13 @@
 @extends('dashboard.layout.new_main')
-@section('submenu', 'Dashboard')
 @section('menu', 'Admin')
+@section('submenu', 'Dashboard')
 @section('content')
 
 <div class="row">
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-lg-6 col-md-12">
         <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
-            <a href="">
+            <a href="/admin/master/user/siswa">
             <div class="card-content ecom-card2 height-180">
                 <h5 class="text-muted danger position-absolute p-1">SISWA</h5>
                 <div>
@@ -22,9 +22,10 @@
             </a>
             </div>
         </div>
+        
     <div class="col-xl-3 col-lg-6 col-md-12">
         <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
-            <a href="">
+            <a href="/admin/master/user/guru">
             <div class="card-content ecom-card2 height-180">
                 <h5 class="text-muted danger position-absolute p-1">GURU</h5>
                 <div>
@@ -42,7 +43,7 @@
 
     <div class="col-xl-3 col-lg-6 col-md-12">
         <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
-            <a href="">
+            <a href="/admin/master/kelas">
             <div class="card-content ecom-card2 height-180">
                 <h5 class="text-muted danger position-absolute p-1">KELAS</h5>
                 <div>
@@ -60,7 +61,7 @@
 
     <div class="col-xl-3 col-lg-6 col-md-12">
         <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
-            <a href="">
+            <a href="/admin/master/mapel">
             <div class="card-content ecom-card2 height-180">
                 <h5 class="text-muted danger position-absolute p-1">MAPEL</h5>
                 <div>

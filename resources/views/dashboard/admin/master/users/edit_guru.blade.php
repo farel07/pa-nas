@@ -1,9 +1,7 @@
-@extends('dashboard.layout.main')
+@extends('dashboard.layout.new_main')
+@section('menu', 'Master')
+@section('submenu', 'User - Guru - Create')
 @section('content')
-
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Edit Data Guru</h1>
-</div>
 
 <div class="row">
     <div class="col-8">
@@ -46,6 +44,7 @@
                 @enderror
               </div>
               
+              <a href="/admin/master/user/guru" class="btn btn-warning">Kembali</a>
               <button type="submit" class="btn btn-primary">Update</button>
             </form>
 

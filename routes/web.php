@@ -24,18 +24,18 @@ Route::get('/', function () {
     return redirect('login');
 })->middleware('guest');
 
-Route::get('/home', function(){
+Route::get('/home', function () {
     return view('dashboard.layout.new_main');
 });
 
 // admin routes
 Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index']);
-    Route::prefix('/master')->group(function (){
-        Route::get('/user/siswa',[UserController::class, 'siswa']);
-        Route::get('/user/siswa/create_siswa',[UserController::class, 'create_siswa']);
-        Route::get('/user/guru',[UserController::class, 'guru']);
-        Route::get('/user/guru/create_guru',[UserController::class, 'create_guru']);
+    Route::prefix('/master')->group(function () {
+        Route::get('/user/siswa', [UserController::class, 'siswa']);
+        Route::get('/user/siswa/create_siswa', [UserController::class, 'create_siswa']);
+        Route::get('/user/guru', [UserController::class, 'guru']);
+        Route::get('/user/guru/create_guru', [UserController::class, 'create_guru']);
         Route::resource('/user', UserController::class);
         Route::resource('/kelas', KelasController::class);
     });

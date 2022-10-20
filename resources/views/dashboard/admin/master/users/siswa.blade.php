@@ -1,9 +1,7 @@
-@extends('dashboard.layout.main')
+@extends('dashboard.layout.new_main')
+@section('menu', 'Master')
+@section('submenu', 'User - Siswa')
 @section('content')
-
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Master User : Siswa</h1>
-</div>
 
 <a href="/admin/master/user" class="btn btn-warning mb-3">Kembali</a>
 <a href="/admin/master/user/siswa/create_siswa" class="btn btn-primary mb-3">Tambah Data Siswa</a>

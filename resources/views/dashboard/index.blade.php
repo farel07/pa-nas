@@ -1,89 +1,82 @@
-@extends('dashboard.layout.main')
+@extends('dashboard.layout.new_main')
+@section('submenu', 'Dashboard')
+@section('menu', 'Admin')
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Dashboard</h1>
-</div>
 
 <div class="row">
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <a href="" class="text-decoration-none">
-            <div class="card shadow h-100 py-2 border-secondary">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                SISWA</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($siswa) }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-users fa-2x"></i>
-                        </div>
-                    </div>
+    <div class="col-xl-3 col-lg-6 col-md-12">
+        <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
+            <a href="">
+            <div class="card-content ecom-card2 height-180">
+                <h5 class="text-muted danger position-absolute p-1">SISWA</h5>
+                <div>
+                    <i class="ft-users danger font-large-1 float-right p-1"></i>
                 </div>
+                <div class="progress-stats-container ct-golden-section height-75 position-relative pt-3  ">
+                    <div class="h5 mb-0 pt-3 font-weight-bold text-center text-gray-800">
+                        <h3>{{ count($siswa) }}</h3>
+                    </div>
+                        </div>
+                </div>
+            </a>
             </div>
-        </a>
- </div>
- 
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <a href="" class="text-decoration-none">
-     <div class="card shadow h-100 py-2 border-secondary">
-         <div class="card-body">
-             <div class="row no-gutters align-items-center">
-                 <div class="col mr-2">
-                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                         GURU</div>
-                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($guru) }}</div>
-                 </div>
-                 <div class="col-auto">
-                    <i class="fas fa-chalkboard-teacher fa-2x"></i>
-                 </div>
-             </div>
-         </div>
-     </div>
-        </a>
- </div>
+        </div>
+    <div class="col-xl-3 col-lg-6 col-md-12">
+        <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
+            <a href="">
+            <div class="card-content ecom-card2 height-180">
+                <h5 class="text-muted danger position-absolute p-1">GURU</h5>
+                <div>
+                    <i class="fas fa-chalkboard-teacher danger font-large-1 float-right p-1"></i>
+                </div>
+                <div class="progress-stats-container ct-golden-section height-75 position-relative pt-3  ">
+                    <div class="h5 mb-0 pt-3 font-weight-bold text-center text-gray-800">
+                        <h3>{{ count($guru) }}</h3>
+                    </div>
+                        </div>
+                </div>
+            </a>
+            </div>
+        </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <a href="/admin/master/kelas" class="text-decoration-none">
-            <div class="card shadow h-100 py-2 border-secondary">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                KELAS</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($kelas) }}</div>
-                        </div>
-                        <div class="col-auto">
-                           <i class="fas fa-window-maximize fa-2x"></i>
-                        </div>
-                    </div>
+    <div class="col-xl-3 col-lg-6 col-md-12">
+        <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
+            <a href="">
+            <div class="card-content ecom-card2 height-180">
+                <h5 class="text-muted danger position-absolute p-1">KELAS</h5>
+                <div>
+                    <i class="fas fa-window-maximize danger font-large-1 float-right p-1"></i>
                 </div>
+                <div class="progress-stats-container ct-golden-section height-75 position-relative pt-3  ">
+                    <div class="h5 mb-0 pt-3 font-weight-bold text-center text-gray-800">
+                        <h3>{{ count($kelas) }}</h3>
+                    </div>
+                        </div>
+                </div>
+            </a>
             </div>
-        </a>
- </div>
- 
-    <div class="col-xl-3 col-md-6 mb-4">
-        <a href="" class="text-decoration-none">
-     <div class="card shadow h-100 py-2 border-secondary">
-         <div class="card-body">
-             <div class="row no-gutters align-items-center">
-                 <div class="col mr-2">
-                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                         MAPEL</div>
-                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($mapel) }}</div>
-                 </div>
-                 <div class="col-auto">
-                    <i class="fas fa-book fa-2x"></i>
-                 </div>
-             </div>
-         </div>
-     </div>
-    </a>
- </div>
- 
- </div>
+        </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-12">
+        <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
+            <a href="">
+            <div class="card-content ecom-card2 height-180">
+                <h5 class="text-muted danger position-absolute p-1">MAPEL</h5>
+                <div>
+                    {{-- <i class="ft-users danger font-large-1 float-right p-1"></i> --}}
+                    <i class="fas fa-book danger font-large-1 float-right p-1"></i>
+                </div>
+                <div class="progress-stats-container ct-golden-section height-75 position-relative pt-3  ">
+                    <div class="h5 mb-0 pt-3 font-weight-bold text-center text-gray-800">
+                        <h3>{{ count($mapel) }}</h3>
+                    </div>
+                        </div>
+                </div>
+            </a>
+            </div>
+        </div>
+    </div>
 
   <br>
 

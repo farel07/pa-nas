@@ -24,6 +24,10 @@ Route::get('/', function () {
     return redirect('login');
 })->middleware('guest');
 
+Route::get('/home', function(){
+    return view('dashboard.layout.new_main');
+});
+
 // admin routes
 Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index']);

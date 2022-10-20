@@ -64,7 +64,7 @@
               </div>
               <button type="submit" class="btn btn-primary">Tambah</button>
               <a href="/admin/master/user/siswa" class="btn btn-warning">Back</a> 
-            
+              
             </form>
 
             

@@ -6,7 +6,7 @@
 </div>
 
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-8">
 
     <a href="/admin/master/kelas/create" class="btn btn-primary mb-4">Create</a>
 

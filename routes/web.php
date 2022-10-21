@@ -1,13 +1,14 @@
 <?php
 
 use App\Models\User;
+use App\Models\Kelas;
 use App\Models\Nilai_Siswa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
-use App\Models\Kelas;
+use App\Http\Controllers\MapelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
         Route::get('/user/guru/create_guru', [UserController::class, 'create_guru']);
         Route::resource('/user', UserController::class);
         Route::resource('/kelas', KelasController::class);
+        Route::resource('/mapel', MapelController::class);
     });
 
     // Route::prefix('/data')->group(function (){

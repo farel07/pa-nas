@@ -23,7 +23,7 @@
             </li>
             <li class="nav-item {{ Request::is('admin/master/kelas') ? 'active' : ''}}"><a href="/admin/master/kelas"><i class="fas fa-university"></i><span class="menu-title" data-i18n="">Kelas</span></a>
             </li>
-            <li class="nav-item"><a href="buttons.html"><i class="fas fa-book"></i><span class="menu-title" data-i18n="">Mapel</span></a>
+            <li class="nav-item {{ Request::is('admin/master/mapel') ? 'active' : ''}}"><a href="/admin/master/mapel"><i class="fas fa-book"></i><span class="menu-title" data-i18n="">Mapel</span></a>
             </li>
             <li class="nav-item"><a href="typography.html"><i class="fas fa-tasks"></i><span class="menu-title" data-i18n="">Assign Guru Mapel</span></a>
             </li>

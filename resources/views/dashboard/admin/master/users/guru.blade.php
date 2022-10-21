@@ -17,7 +17,7 @@
     </div>
 
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
 
         <table class="table">
             <thead>
@@ -48,9 +48,9 @@
                     <form action="/admin/master/user/{{ $g->id }}" method="post">
                       @csrf
                       @method('delete')
-                    <a href="/admin/master/user/{{ $g->id }}/edit" class="btn btn-primary rounded-circle"><i class="fas fa-edit"></i></a>
+                    <a href="/admin/master/user/{{ $g->id }}/edit" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                       
-                    <button class="btn btn-danger rounded-circle" type="submit" onclick="return confirm('affkh anda yakin >/<')"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('affkh anda yakin >/<')"><i class="fas fa-trash"></i></button>
 
                   </form>
                   </td>

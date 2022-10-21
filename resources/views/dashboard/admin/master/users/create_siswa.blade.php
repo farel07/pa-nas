@@ -45,7 +45,7 @@
 
               <div class="form-group mb-3">
                 <label>Kelas</label>
-                <select class="form-select" name="kelas_id" id="inputGroupSelect04" aria-label="Example select with button addon" value="{{ old('kelas_id') }}">
+                <select class="form-control" name="kelas_id" id="inputGroupSelect04" aria-label="Example select with button addon" value="{{ old('kelas_id') }}">
                   <option selected value="">Pilih kelas...</option>
                   @foreach ($kelas as $k)
                   <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>

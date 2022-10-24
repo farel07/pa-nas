@@ -61,7 +61,7 @@
 
     <div class="col-xl-3 col-lg-6 col-md-12">
         <div class="card pull-up ecom-card-1" style="background-color: rgb(244, 250, 194)">
-            <a href="/admin/master/mapel">
+            <a href="/admin/master/list_mapel">
             <div class="card-content ecom-card2 height-180">
                 <h5 class="text-muted danger position-absolute p-1">MAPEL</h5>
                 <div>

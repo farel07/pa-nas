@@ -7,6 +7,7 @@ use App\Models\Kelas;
 use App\Models\Kelas_User;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 
 class MapelController extends Controller
 {
@@ -23,6 +24,13 @@ class MapelController extends Controller
         ];
 
         return view('dashboard.admin.master.mapel.index', $data);
+    }
+
+    public function index2()
+    {
+        return view('dashboard.admin.master.mapel.list_mapel', [
+            'mapel' => Mapel::latest()->get()
+        ]);
     }
 
     /**
@@ -115,13 +123,6 @@ class MapelController extends Controller
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    public function index2()
-    {
-        return view('dashboard.admin.master.mapel.list_mapel', [
-            'mapel' => Mapel::latest()->get()
-        ]);
-    }
-
     public function show2($id)
     {
         return view('dashboard.admin.master.mapel.list_kelas_mapel', [
@@ -144,8 +145,12 @@ class MapelController extends Controller
             'kelas_id' => 'required'
         ]);
 
+        if (Guru_Mapel::where('kelas_id', $validateData['kelas_id'])->where('mapel_id', $validateData['mapel_id'])->exists()) {
+            return redirect('/admin/master/kelas_mapel/' . $request->kelas_id)->with('error', 'Mapel Sudah Terdapat Pada Kelas Ini');
+        }
+
         Guru_Mapel::create($validateData);
-        return redirect('/admin/master/mapel')->with('success', 'Mapel Kelas Berhasil Ditambahkan');
+        return redirect('/admin/master/kelas_mapel/' . $request->kelas_id)->with('success', 'Mapel Kelas Berhasil Ditambahkan');
     }
 
     public function destroy_mapel_at_class($id, Request $request)

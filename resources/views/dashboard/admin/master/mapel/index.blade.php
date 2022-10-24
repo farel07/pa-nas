@@ -33,7 +33,6 @@
                           <td>{{ $k->nama_kelas }}</td>
                           <td>
                             <a href="/admin/master/kelas_mapel/{{ $k->id }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                            <a href="/admin/master/kelas_mapel/create/{{ $k->id }}" class="btn btn-success"><i class="fas fa-plus"></i></a>
                           </td>
                         </tr>
         

@@ -115,7 +115,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-
         // ================== tambah guru pada mapel ===================
         Guru_Mapel::create([
             'user_id' => 2,
@@ -182,6 +181,11 @@ class DatabaseSeeder extends Seeder
             'tempat_lahir' => 'Bilek island',
             'tanggal_lahir' => now(),
             'role_id' => 3
+        ]);
+
+        Kelas_User::create([
+            'user_id' => 5,
+            'kelas_id' => 1
         ]);
     }
 }

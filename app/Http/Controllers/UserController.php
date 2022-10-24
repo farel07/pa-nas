@@ -51,18 +51,18 @@ class UserController extends Controller
             'password' => 'required|min:4',
         ]);
 
-        if($request->is_siswa){
+        if ($request->is_siswa) {
             $request->validate(['kelas_id' => 'required']);
             $validatedData['role_id'] = 3;
             $to = 'siswa';
-        } else if($request->is_guru){
+        } else if ($request->is_guru) {
             $validatedData['role_id'] = 2;
             $to = 'guru';
         }
 
         $user = User::create($validatedData);
-        
-        if($request->is_siswa){
+
+        if ($request->is_siswa) {
             Kelas_User::create([
                 'user_id' => $user->id,
                 'kelas_id' => $request->kelas_id
@@ -98,10 +98,10 @@ class UserController extends Controller
             'user' => User::find($id)
         ];
 
-        if($user->role_id == 3){
+        if ($user->role_id == 3) {
             $data['kelas'] = Kelas::all();
             return view('dashboard.admin.master.users.edit_siswa', $data);
-        } elseif($user->role_id == 2){
+        } elseif ($user->role_id == 2) {
             return view('dashboard.admin.master.users.edit_guru', $data);
         }
     }
@@ -122,12 +122,12 @@ class UserController extends Controller
             'tanggal_lahir' => 'required|date',
         ]);
 
-        if($request->is_siswa){
+        if ($request->is_siswa) {
 
             $request->validate(['kelas_id' => 'required']);
             Kelas_User::where('user_id', $id)->update(['kelas_id' => $request->kelas_id]);
             $to = 'siswa';
-        } else if($request->is_guru){
+        } else if ($request->is_guru) {
 
             $to = 'guru';
         }
@@ -135,7 +135,6 @@ class UserController extends Controller
         User::where('id', $id)->update($validatedData);
 
         return redirect('/admin/master/user/' . $to)->with('success', 'Data ' . $to . ' berhasil diupdate!');
-
     }
 
     /**
@@ -149,9 +148,9 @@ class UserController extends Controller
         $user = User::find($id);
         User::destroy($id);
 
-        if($user->role_id == 3){
+        if ($user->role_id == 3) {
             $to = 'siswa';
-        } else if($user->role_id == 2){
+        } else if ($user->role_id == 2) {
             $to = 'guru';
         }
 
@@ -164,12 +163,14 @@ class UserController extends Controller
         return view('dashboard.admin.master.users.siswa', $data);
     }
 
-    public function guru(){
+    public function guru()
+    {
         $data['guru'] = User::where('role_id', 2)->get();
         return view('dashboard.admin.master.users.guru', $data);
     }
 
-    public function create_siswa(){
+    public function create_siswa()
+    {
         $data = [
             'kelas' => Kelas::all()
         ];
@@ -177,7 +178,8 @@ class UserController extends Controller
         return view('dashboard.admin.master.users.create_siswa', $data);
     }
 
-    public function create_guru(){
+    public function create_guru()
+    {
         return view('dashboard.admin.master.users.create_guru');
     }
 }

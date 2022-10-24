@@ -40,6 +40,7 @@ Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
         Route::resource('/user', UserController::class);
         Route::resource('/kelas', KelasController::class);
         Route::resource('/mapel', MapelController::class);
+        Route::get('/list_mapel', [MapelController::class, 'index2']);
     });
 
     // Route::prefix('/data')->group(function (){

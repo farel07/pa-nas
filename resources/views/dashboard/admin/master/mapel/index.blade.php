@@ -3,10 +3,8 @@
 @section('submenu', 'Mapel')
 @section('content')
 
-@foreach ($mapel as $m)
-
-{{ $m }}
-    
-@endforeach
+    <div class="mb-3">
+        <a href="/admin/master/list_mapel" class="btn btn-primary">Mapel</a>
+    </div>
 
 @endsection

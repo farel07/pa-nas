@@ -79,7 +79,7 @@
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" name="username">
+      <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username">
       <label for="floatingInput">Username</label>
     </div>
     <div class="form-floating">

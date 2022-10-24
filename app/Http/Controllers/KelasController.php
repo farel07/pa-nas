@@ -42,11 +42,11 @@ class KelasController extends Controller
         ]);
 
         $validateData = $request->validate([
-            'nama_kelas' => 'required'
+            'nama_kelas' => 'required|unique:kelas'
         ], $messages);
 
         Kelas::create($validateData);
-        return redirect('/admin/master/kelas');
+        return redirect('/admin/master/kelas')->with('success', 'Kelas Berhasil Ditambahkan');
     }
 
     /**
@@ -68,9 +68,11 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit($id)
     {
-        //
+        return view('dashboard.admin.master.kelas.update_kelas', [
+            'kelas' => Kelas::find($id)
+        ]);
     }
 
     /**
@@ -80,9 +82,18 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $id)
     {
-        //
+        $messages = ([
+            'required' => 'Isien Le'
+        ]);
+
+        $validateData = $request->validate([
+            'nama_kelas' => 'required|unique:nama_kelas'
+        ], $messages);
+
+        Kelas::where('id', $id)->update($validateData);
+        return redirect('/admin/master/kelas')->with('success', 'Kelas Berhasil DiUpdate');
     }
 
     /**
@@ -91,8 +102,10 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy($id)
     {
-        //
+        Kelas::destroy('id', $id);
+
+        return redirect('/admin/master/kelas')->with('success', 'Kelas Berhadil DiHapus');
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mapel;
 use Illuminate\Http\Request;
 
-class MapelController extends Controller
+class KelasMapelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +13,7 @@ class MapelController extends Controller
      */
     public function index()
     {
-        $data = [
-            'mapel' => Mapel::latest()->get()
-        ];
-
-        return view('dashboard.admin.master.mapel.index', $data);
-    }
-
-    public function index2()
-    {
-        return view('dashboard.admin.master.mapel.list_mapel', [
-            'mapel' => Mapel::latest()->get()
-        ]);
+        //
     }
 
     /**
@@ -35,7 +23,7 @@ class MapelController extends Controller
      */
     public function create()
     {
-        return view('dashboard.admin.master.mapel.create_mapel');
+        //
     }
 
     /**
@@ -46,16 +34,7 @@ class MapelController extends Controller
      */
     public function store(Request $request)
     {
-        $messages = ([
-            'required' => 'Isien Le'
-        ]);
-
-        $validateData = $request->validate([
-            'nama_mapel' => 'required|unique:mapel'
-        ], $messages);
-
-        Mapel::create($validateData);
-        return redirect('/admin/master/list_mapel')->with('success', 'Mapel Berhasil Ditambahkan');
+        //
     }
 
     /**
@@ -77,9 +56,7 @@ class MapelController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.admin.master.mapel.update_mapel', [
-            'mapel' => Mapel::find($id)
-        ]);
+        //
     }
 
     /**
@@ -91,16 +68,7 @@ class MapelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $messages = ([
-            'required' => 'Isien Le'
-        ]);
-
-        $validateData = $request->validate([
-            'nama_mapel' => 'required|unique:mapel'
-        ], $messages);
-
-        Mapel::where('id', $id)->update($validateData);
-        return redirect('/admin/master/list_mapel')->with('success', 'Mapel Berhasil Diupdate');
+        //
     }
 
     /**
@@ -111,8 +79,6 @@ class MapelController extends Controller
      */
     public function destroy($id)
     {
-        Mapel::destroy('id', $id);
-
-        return redirect('/admin/master/list_mapel')->with('success', 'Mapel Berhasil Dihapus');
+        //
     }
 }

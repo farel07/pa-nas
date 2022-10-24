@@ -7,9 +7,15 @@
 <div class="col-md-8">
 
   <div class="mb-3">
-    <a href="/admin/master/user" class="btn btn-warning">Kembali</a>
     <a href="/admin/master/kelas/create" class="btn btn-primary">Create</a>
   </div>
+  
+    @if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session('success') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
 
         <table class="table">
             <thead>
@@ -26,9 +32,9 @@
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $k->nama_kelas }}</td>
                   <td>
-                    <a href="/admin/master/kelas/{{ $k->id }}" class="btn btn-info"><i class="fas fa-eye"></i></a> {{-- edit --}}
+                    <a href="/admin/master/kelas/{{ $k->id }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                     <a href="/admin/master/kelas/{{ $k->id }}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a> {{-- edit --}}
-                    <form action="/admin/master/kelas{{ $k->id }}" method="POST" class="d-inline"> {{-- delete --}}
+                    <form action="/admin/master/kelas/{{ $k->id }}" method="POST" class="d-inline"> {{-- delete --}}
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-backspace"></i></button>

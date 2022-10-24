@@ -21,7 +21,7 @@
                 </select>
             </div>
 
-            <a href="/admin/master/mapel" class="btn btn-danger">Back</a>
+            <a href="/admin/master/kelas_mapel/{{ $kelas->id }}" class="btn btn-danger">Back</a>
             <button type="submit" class="btn btn-primary">Tambah</button>
 
         </form>

@@ -11,13 +11,11 @@ class Kelas extends Model
     protected $table = 'kelas';
     protected $guarded = ['id'];
 
-    public function user_kelas()
-    {
+    public function user_kelas(){
         return $this->hasMany(Kelas_User::class, 'kelas_id', 'id');
     }
-
-    public function mapel()
-    {
-        return $this->belongsToMany(Mapel::class, 'guru_mapel', 'kelas_id', 'id');
+    
+    public function mapel(){
+        return $this->belongsToMany(Mapel::class, 'guru_mapel', 'kelas_id', 'mapel_id', 'id')->withPivot('id');   
     }
 }

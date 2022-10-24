@@ -10,14 +10,17 @@
         <a href="/admin/master/mapel/create" class="btn btn-primary">Create</a>
     </div>
     
-    <div class="col-md-8">
+    @if (session()->has('success'))
+    <div class="col-6">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session('success') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+    @endif
 
-        @if (session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          {{ session('success') }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
+    <div class="col-md-7">
+
     
             <table class="table">
                 <thead>
@@ -51,7 +54,7 @@
     
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="card shadow mb-4">
             <div class="card-body" id="mapel">
                 <div class="card-header py-3">

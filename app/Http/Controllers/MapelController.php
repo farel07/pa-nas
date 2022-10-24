@@ -148,10 +148,10 @@ class MapelController extends Controller
         return redirect('/admin/master/mapel')->with('success', 'Mapel Kelas Berhasil Ditambahkan');
     }
 
-    public function destroy_mapel_at_class($id)
+    public function destroy_mapel_at_class($id, Request $request)
     {
         Guru_Mapel::destroy('id', $id);
 
-        return redirect('/admin/master/kelas_mapel/{id}')->with('success', 'Mapel Kelas Berhasil Dihapus');
+        return redirect('/admin/master/kelas_mapel/' .  $request->kelas_id)->with('success', 'Mapel Kelas Berhasil Dihapus');
     }
 }

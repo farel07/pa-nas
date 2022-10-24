@@ -60,6 +60,8 @@ class UserController extends Controller
             $to = 'guru';
         }
 
+        $validatedData['password'] = bcrypt($validatedData);
+
         $user = User::create($validatedData);
 
         if ($request->is_siswa) {

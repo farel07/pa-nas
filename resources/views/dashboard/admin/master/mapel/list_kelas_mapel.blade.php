@@ -29,14 +29,15 @@
                 <tbody>
                     
                     @foreach ($kelas->mapel as $km)
-                        
+                        {{ $km }}
                     <tr>
                       <th scope="row">{{ $loop->iteration }}</th>
                       <td>{{ $km->nama_mapel }}</td>
                       <td>
-                        <form action="/admin/master/mapel/{{ $km->pivot->id }}" method="POST" class="d-inline"> {{-- delete --}}
+                        <form action="/admin/master/kelas_mapel/{{ $km->pivot->id }}" method="POST" class="d-inline"> {{-- delete --}}
                             @method('DELETE')
                             @csrf
+                            <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-backspace"></i></button>
                         </form>
                       </td>

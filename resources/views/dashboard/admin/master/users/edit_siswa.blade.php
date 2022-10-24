@@ -49,10 +49,16 @@
                 <select class="form-control" name="kelas_id" id="inputGroupSelect04" aria-label="Example select with button addon" value="{{ old('kelas_id') }}">
                   <option selected value="">Pilih kelas...</option>
                   @foreach ($kelas as $k)
+                  @if (!$user->kelas_user)
+                  <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
+                  @else
+                      
                   @if (old('kelas_id', $user->kelas_user->kelas_id) == $k->id)
                     <option value="{{ $k->id }}" selected>{{ $k->nama_kelas }}</option>
                   @else  
                     <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
+                  @endif
+
                   @endif
                   @endforeach
                 </select>

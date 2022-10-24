@@ -125,7 +125,17 @@ class UserController extends Controller
         if($request->is_siswa){
 
             $request->validate(['kelas_id' => 'required']);
-            Kelas_User::where('user_id', $id)->update(['kelas_id' => $request->kelas_id]);
+            $user = User::find($id);
+
+            if(!$user->kelas_user){
+                Kelas_User::create([
+                    'user_id' => $id,
+                    'kelas_id' => $request->kelas_id
+                ]);
+            } else{
+                Kelas_User::where('user_id', $id)->update(['kelas_id' => $request->kelas_id]);
+            }
+
             $to = 'siswa';
         } else if($request->is_guru){
 

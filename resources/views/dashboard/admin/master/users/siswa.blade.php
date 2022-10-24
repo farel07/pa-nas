@@ -38,7 +38,11 @@
                   <td>{{ $s->nisn_npsn }}</td>
                   <td>{{ $s->name }}</td>
                   <td>{{ $s->tempat_lahir . ', ' . $s->tanggal_lahir}}</td>
+                  @if (!$s->kelas_user)                  
+                  <td>tidak ada kelas</td>
+                  @else
                   <td>{{ $s->kelas_user->kelas->nama_kelas }}</td>
+                  @endif
                   <td>
                     <form action="/admin/master/user/{{ $s->id }}" method="post">
                       @csrf

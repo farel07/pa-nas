@@ -7,7 +7,7 @@
 
     <div class="mb-3">
         <a href="/admin/master/mapel" class="btn btn-warning">Back</a>
-        <a href="/admin/master/kelas_mapel/create/{{ $kelas->id }}" class="btn btn-success">Tambah</a>
+        <a href="/admin/master/kelas_mapel/create/{{ $kelas->id }}" class="btn btn-success">Tambah Mapel</a>
     </div>
     
     <div class="col-md-8">

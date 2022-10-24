@@ -7,7 +7,7 @@
         <div class="col-md-8">
         
             <div class="mb-3">
-                <a href="/admin/master/list_mapel" class="btn btn-primary">Mapel</a>
+                <a href="/admin/master/list_mapel" class="btn btn-primary">List Mapel</a>
             </div>
           
             @if (session()->has('success'))

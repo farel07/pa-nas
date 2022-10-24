@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('guru_mapel', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->bigInteger('mapel_id')->unsigned();
             $table->foreign('mapel_id')->references('id')->on('mapel')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->bigInteger('kelas_id')->unsigned()->nullable();
+            $table->bigInteger('kelas_id')->unsigned();
             $table->foreign('kelas_id')->references('id')->on('kelas');
             $table->timestamps();
         });

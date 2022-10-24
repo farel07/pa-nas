@@ -118,11 +118,13 @@ class DatabaseSeeder extends Seeder
         // ================== tambah guru pada mapel ===================
         Guru_Mapel::create([
             'user_id' => 2,
-            'mapel_id' => 1
+            'mapel_id' => 1,
+            'kelas_id' => 1
         ]);
         Guru_Mapel::create([
             'user_id' => 2,
-            'mapel_id' => 2
+            'mapel_id' => 2,
+            'kelas_id' => 1
         ]);
 
 

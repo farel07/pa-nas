@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'faldi',
             'tempat_lahir' => 'asdad',
             'tanggal_lahir' => now(),
-            'role_id' => 1
+            'role_id' => 3
         ]);
 
 
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Kelas_User::create([
-            'user_id' => 6,
+            'user_id' => 4,
             'kelas_id' => 1
         ]);
 

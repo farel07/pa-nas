@@ -20,7 +20,7 @@
     <div class="col-md-12">
 
         <table class="table">
-            <thead>
+            <thead >
               <tr class="table-primary">
                 <th scope="col">NO</th>
                 <th scope="col">NISN</th>

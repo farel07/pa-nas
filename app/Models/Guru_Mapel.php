@@ -19,6 +19,10 @@ class Guru_Mapel extends Model
         return $this->belongsTo(Mapel::class, 'mapel_id', 'id');
     }
 
+    public function kelas(){
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
+    }
+
     // public function nama_nilai(){
     //     return $this->belongsToMany(Teknik_Nilai::class, 'nama_nilai');
     // }

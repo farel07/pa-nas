@@ -29,7 +29,6 @@
                 <tbody>
                     
                     @foreach ($kelas->mapel as $km)
-                        {{ $km }}
                     <tr>
                       <th scope="row">{{ $loop->iteration }}</th>
                       <td>{{ $km->nama_mapel }}</td>

@@ -41,6 +41,10 @@ Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
         Route::resource('/kelas', KelasController::class);
         Route::resource('/mapel', MapelController::class);
         Route::get('/list_mapel', [MapelController::class, 'index2']);
+        Route::get('/kelas_mapel/{id}', [MapelController::class, 'show2']);
+        Route::get('/kelas_mapel/create/{id}', [MapelController::class, 'add_mapel_at_class']);
+        Route::post('/kelas_mapel', [MapelController::class, 'store_mapel_at_class']);
+        Route::delete('/kelas_mapel/{id}', [MapelController::class, 'destroy_mapel_at_class']);
     });
 
     // Route::prefix('/data')->group(function (){
@@ -86,6 +90,6 @@ Route::get('/dokumentasi', function () {
     return view('dokumentasi', [
         'users' => User::all(),
         'nilai' => Nilai_Siswa::all(),
-        'kelas' => Kelas::find(3)
+        'kelas' => Kelas::find(1)
     ]);
 });

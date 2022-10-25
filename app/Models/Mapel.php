@@ -14,4 +14,5 @@ class Mapel extends Model
     public function nama_nilai(){
         return $this->belongsToMany(Teknik_Nilai::class, 'nama_nilai', 'guru_mapel_id', 'teknik_nilai_id')->withPivot('nama');
     }
+
 }

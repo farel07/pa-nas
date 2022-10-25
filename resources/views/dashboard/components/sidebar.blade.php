@@ -58,14 +58,14 @@
             </li>
           </ul>
 
-          <ul class="nav flex-column">
+          {{-- <ul class="nav flex-column">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/admin/master/mapel">
                 <span data-feather="book" class="align-text-bottom"></span>
                 Assign Guru Mapel
               </a>
             </li>
-          </ul>
+          </ul> --}}
 
     
           

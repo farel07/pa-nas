@@ -6,6 +6,7 @@ use App\Models\Guru_Mapel;
 use App\Models\Kelas;
 use App\Models\Kelas_User;
 use App\Models\Mapel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Exists;
 
@@ -126,7 +127,8 @@ class MapelController extends Controller
     public function show2($id)
     {
         return view('dashboard.admin.master.mapel.list_kelas_mapel', [
-            'kelas' => Kelas::find($id)
+            'kelas' => Kelas::find($id),
+            'mapel_kelas' => Guru_Mapel::where('kelas_id', $id)->latest()->get()
         ]);
     }
 
@@ -159,4 +161,35 @@ class MapelController extends Controller
 
         return redirect('/admin/master/kelas_mapel/' .  $request->kelas_id)->with('success', 'Mapel Kelas Berhasil Dihapus');
     }
+
+    // assign ================================================
+
+    public function assign_guru_to_mapel($id){
+        
+        return view('dashboard.admin.master.mapel.assign_guru_to_mapel',[
+            'mapel_kelas' => Guru_Mapel::find($id),
+            'guru' => User::where('role_id', 2)->get() 
+        ]);
+    }
+
+    public function assign_guru_kelas_mapel($id, Request $request){
+        $validateData = $request->validate([
+            'user_id' => 'required',
+            'kelas_id' => 'required'
+        ]);
+
+        Guru_Mapel::where('id', $id)->update($validateData);
+
+        return redirect('/admin/master/kelas_mapel/' .  $request->kelas_id)->with('success', 'Berhasil menambahkan guru pada mapel');
+    }
+
+    public function unassign_guru_kelas_mapel($id, Request $request){
+
+        Guru_Mapel::where('id', $id)->update([
+            'user_id' => null
+        ]);
+
+        return redirect('/admin/master/kelas_mapel/' .  $request->kelas_id)->with('success', 'Berhasil menghapus guru pada mapel');
+    }
+
 }

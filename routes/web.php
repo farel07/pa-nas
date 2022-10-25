@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
+use App\Models\Mapel;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,18 +34,26 @@ Route::get('/home', function () {
 Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index']);
     Route::prefix('/master')->group(function () {
+        // user ==================================================================
         Route::get('/user/siswa', [UserController::class, 'siswa']);
         Route::get('/user/siswa/create_siswa', [UserController::class, 'create_siswa']);
         Route::get('/user/guru', [UserController::class, 'guru']);
         Route::get('/user/guru/create_guru', [UserController::class, 'create_guru']);
         Route::resource('/user', UserController::class);
+
+        // kelas =================================================================
         Route::resource('/kelas', KelasController::class);
         Route::resource('/mapel', MapelController::class);
+
+        // mapel =================================================================
         Route::get('/list_mapel', [MapelController::class, 'index2']);
         Route::get('/kelas_mapel/{id}', [MapelController::class, 'show2']);
         Route::get('/kelas_mapel/create/{id}', [MapelController::class, 'add_mapel_at_class']);
         Route::post('/kelas_mapel', [MapelController::class, 'store_mapel_at_class']);
         Route::delete('/kelas_mapel/{id}', [MapelController::class, 'destroy_mapel_at_class']);
+        Route::get('/kelas_mapel/assign/{id}', [MapelController::class, 'assign_guru_to_mapel']);
+        Route::put('/kelas_mapel/assign/{id}', [MapelController::class, 'assign_guru_kelas_mapel']);
+        Route::put('/kelas_mapel/unassign/{id}', [MapelController::class, 'unassign_guru_kelas_mapel']);
     });
 
     // Route::prefix('/data')->group(function (){

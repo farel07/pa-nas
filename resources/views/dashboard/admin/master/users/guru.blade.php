@@ -40,17 +40,17 @@
                   <td>{{ $g->tempat_lahir . ', ' . $g->tanggal_lahir}}</td>
                   <td>
                   {{-- {{ $g->guru_mapel[1] }} --}}
-                    @foreach ($g->guru_mapel as $mapel)                
-                    {{ $mapel->nama_mapel }} <br>
+                    @foreach ($g->kelas_mapel as $mapel)                
+                    {{ $mapel->mapel->nama_mapel . ' | ' . $mapel->kelas->nama_kelas }}<br>    
                     @endforeach
                 </td>
                   <td>
                     <form action="/admin/master/user/{{ $g->id }}" method="post">
                       @csrf
                       @method('delete')
-                    <a href="/admin/master/user/{{ $g->id }}/edit" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <a href="/admin/master/user/{{ $g->id }}/edit" class="btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                       
-                    <button class="btn btn-danger" type="submit" onclick="return confirm('affkh anda yakin >/<')"><i class="fas fa-trash"></i></button>
+                    <button class="btn-sm btn-danger" type="submit" onclick="return confirm('affkh anda yakin >/<')"><i class="fas fa-trash"></i></button>
 
                   </form>
                   </td>

@@ -12,6 +12,11 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $guarded = ['id'];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id', 'id');
@@ -26,8 +31,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Mapel::class, 'guru_mapel', 'user_id', 'mapel_id');
     }
 
+    public function kelas_mapel(){
+        return $this->hasMany(Guru_Mapel::class, 'user_id', 'id');
+    }
+
     public function nilai_siswa()
     {
         return $this->hasMany(Nilai_Siswa::class, 'user_id', 'id');
     }
+
+
 }

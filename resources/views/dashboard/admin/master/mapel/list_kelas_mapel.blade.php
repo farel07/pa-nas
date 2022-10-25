@@ -31,17 +31,34 @@
                   <tr class="table-primary">
                     <th scope="col">NO</th>
                     <th scope="col">NAMA MAPEL</th>
+                    <th scope="col">GURU</th>
                     <th scope="col">ACTION</th>
                 </tr>
                 </thead>
                 <tbody>
                     
-                    @foreach ($kelas->mapel as $km)
+                    @foreach ($mapel_kelas as $km)
                     <tr>
                       <th scope="row">{{ $loop->iteration }}</th>
-                      <td>{{ $km->nama_mapel }}</td>
+                      <td>{{ $km->mapel->nama_mapel }}</td>
+                      <td>{{ ($km->user) ? $km->user->name : '_' }}</td>
                       <td>
-                        <form action="/admin/master/kelas_mapel/{{ $km->pivot->id }}" method="POST" class="d-inline"> {{-- delete --}}
+                        @if ($km->user)
+
+                        <form action="/admin/master/kelas_mapel/unassign/{{ $km->id }}" method="POST" class="d-inline"> {{-- delete --}}
+                          @method('put')
+                          @csrf
+                          <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
+                          <button type="submit" class="btn btn" style="background-color: rgb(230, 113, 18)" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-user-slash"></i></button>
+                      </form>
+
+                        @else
+                            
+                        <a href="/admin/master/kelas_mapel/assign/{{ $km->id }}" class="btn btn-success"><i class="fas fa-user-plus"></i></a>
+
+                        @endif
+
+                        <form action="/admin/master/kelas_mapel/{{ $km->id }}" method="POST" class="d-inline"> {{-- delete --}}
                             @method('DELETE')
                             @csrf
                             <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">

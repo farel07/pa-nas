@@ -9,12 +9,17 @@
         </div>
         <div class="main-menu-content">
           <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+
+            <li class="nav-item {{ Request::is('dokumentasi') ? 'active' : ''}}"><a href="/dokumentasi"><i class="ft-book"></i><span class="menu-title" data-i18n="">Dokumentasi cuy ☝</span></a>
+            </li>
+
+            @can('admin')
+                
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-1 text-muted text-uppercase">
               <span>Admin</span>
             </h6>
+            
             <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : ''}}"><a href="/admin/dashboard"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('dokumentasi') ? 'active' : ''}}"><a href="/dokumentasi"><i class="ft-book"></i><span class="menu-title" data-i18n="">Dokumentasi cuy ☝</span></a>
             </li>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-1 text-muted text-uppercase">
               <span>Master</span>
@@ -27,6 +32,27 @@
             </li>
             {{-- <li class="nav-item"><a href="typography.html"><i class="fas fa-tasks"></i><span class="menu-title" data-i18n="">Assign Guru Mapel</span></a>
             </li> --}}
+
+            @endcan
+
+            @can('guru')
+                
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-1 text-muted text-uppercase">
+              <span>Guru</span>
+            </h6>
+
+            <li class="nav-item {{ Request::is('guru/dashboard') ? 'active' : ''}}"><a href="/guru/dashboard"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
+            </li>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-1 text-muted text-uppercase">
+              <span>Penilaian</span>
+            </h6>
+
+            <li class="nav-item {{ Request::is('guru/penilaian/nama_nilai') ? 'active' : ''}}"><a href="/guru/penilaian/nama_nilai"><i class="fas fa-star-half-alt"></i><span class="menu-title" data-i18n="">Nama Penilaian</span></a>
+            </li>
+
+            @endcan
+
           </ul>
         </div>
         <div class="navigation-background"></div>

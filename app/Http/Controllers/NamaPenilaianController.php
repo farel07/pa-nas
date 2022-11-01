@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru_Mapel;
 use App\Models\Kelas;
+use App\Models\Nama_Nilai;
 use Illuminate\Http\Request;
 
 class NamaPenilaianController extends Controller
@@ -42,7 +43,13 @@ class NamaPenilaianController extends Controller
     }
 
     public function list_mapel($id){
-        return Guru_Mapel::where('user_id', auth()->user()->id)->where('kelas_id', $id)->get();
+        $data['mapel'] = Guru_Mapel::where('user_id', auth()->user()->id)->where('kelas_id', $id)->get();
+        return view('dashboard.guru.penilaian.nama_nilai.mapel_kelas', $data);
+    }
+
+    public function show_nama_penilaian($id){
+        $data['nama_penilaian'] = Nama_Nilai::where('guru_mapel_id', $id)->get();
+        return view('dashboard.guru.penilaian.nama_nilai.nama_nilai_mapel', $data);
     }
 
     /**

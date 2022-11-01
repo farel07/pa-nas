@@ -82,6 +82,9 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
 
         Route::get('/nama_nilai', [NamaPenilaianController::class, 'index_kelas']);
         Route::get('/nama_nilai/{id}', [NamaPenilaianController::class, 'list_mapel']);
+        
+        // ajax
+        Route::get('/nama_nilai/mapel_kelas/{id}', [NamaPenilaianController::class, 'show_nama_penilaian']);
     });
  });
 

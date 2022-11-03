@@ -88,6 +88,8 @@ class NamaPenilaianController extends Controller
             'teknik_nilai_id' => 'required'
         ]);
 
+        $validateData['status'] = 0;
+
         Nama_Nilai::create($validateData);
         return back()->with('success', 'Data Berhasil Ditambahkan');
     }

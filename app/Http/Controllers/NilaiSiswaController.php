@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guru_Mapel;
 use App\Models\Kelas;
+use App\Models\Guru_Mapel;
+use App\Models\Mapel;
 use App\Models\Nama_Nilai;
+use App\Models\Nilai_Siswa;
 use Illuminate\Http\Request;
 
-class NamaPenilaianController extends Controller
+class NilaiSiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,6 +22,7 @@ class NamaPenilaianController extends Controller
     }
 
     public function index_kelas(){
+
         $data = [
             'user' => auth()->user()
         ];
@@ -39,17 +42,7 @@ class NamaPenilaianController extends Controller
             return Guru_Mapel::where('user_id', auth()->user()->id)->where('kelas_id', $kelas_id)->get();
         };
 
-        return view('dashboard.guru.penilaian.nama_nilai.index_kelas', $data);
-    }
-
-    public function list_mapel($id){
-        $data['mapel'] = Guru_Mapel::where('user_id', auth()->user()->id)->where('kelas_id', $id)->get();
-        return view('dashboard.guru.penilaian.nama_nilai.mapel_kelas', $data);
-    }
-
-    public function show_nama_penilaian($id){
-        $data['nama_penilaian'] = Nama_Nilai::where('guru_mapel_id', $id)->get();
-        return view('dashboard.guru.penilaian.nama_nilai.nama_nilai_mapel', $data);
+        return view('dashboard.guru.penilaian.nilai_siswa.index', $data);
     }
 
     /**
@@ -57,9 +50,14 @@ class NamaPenilaianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
+        $data = [
+            'mapel' => Guru_Mapel::where('kelas_id', $id)->where('user_id', auth()->user()->id)->get(),
+            'kelas' => Kelas::find($id)
+        ];
 
+        return view('dashboard.guru.penilaian.nilai_siswa.create_nilai_siswa', $data);
     }
 
     /**
@@ -69,8 +67,35 @@ class NamaPenilaianController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $request->validate([
+            'guru_mapel_id' => 'required',
+            'nama_nilai_id' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        $validatedData['nama_nilai_id'] = $request->nama_nilai_id;
+        $validatedData['user_id'] = $request->user_id;
+        $validatedData['nilai'] = $request->nilai;
+  
+
+        $fix_data = [];
+        
+        for($i = 0; $i < count($validatedData['user_id']); $i++){
+            $per_data = [
+                'user_id' => $validatedData['user_id'][$i],
+                'nilai' => $validatedData['nilai'][$i],
+                'nama_nilai_id' => $validatedData['nama_nilai_id'],
+                'mapel_id' => Mapel::find(Guru_Mapel::find($request->guru_mapel_id)->mapel_id)->id
+            ];
+
+            $fix_data[] = $per_data;
+        }
+
+        Nilai_Siswa::insert($fix_data);
+
+        return back()->with('success', 'Berhasil menambah nilai siswa');
+        
     }
 
     /**
@@ -116,5 +141,13 @@ class NamaPenilaianController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function select_nama_nilai($id){
+        // return response()->json(Nama_Nilai::where('guru_mapel_id', $id)->get()); 
+        return view('dashboard.guru.penilaian.nilai_siswa.select_nama_nilai',[
+            'nama_nilai' => Nama_Nilai::where('guru_mapel_id', $id)->get(),
+            'siswa' => Kelas::find(Guru_Mapel::find($id)->kelas_id)->user_kelas
+        ]);
     }
 }

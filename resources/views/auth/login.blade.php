@@ -74,7 +74,7 @@
 <main class="form-signin w-100 m-auto">
   <form method="POST" action="/login">
     @csrf
-    <img class="mb-4" src="https://pbs.twimg.com/media/Fct1iI9WQAA5aOe?format=jpg&name=900x900" alt="" width="200" height="200">
+    <img class="mb-4" src="https://i.pinimg.com/originals/d7/1b/63/d71b638ddbb5b715b1b5cfbe54c76cc3.jpg" alt="" width="200" height="200">
 
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 

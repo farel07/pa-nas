@@ -77,16 +77,18 @@ Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
 
 // guru routes
 Route::middleware(['guru'])->prefix('/guru')->group(function () {
-    Route::get('/dashboard',[GuruController::class, 'index']);
-    Route::prefix('/penilaian')->group(function(){
+    Route::get('/dashboard', [GuruController::class, 'index']);
+    Route::prefix('/penilaian')->group(function () {
 
         Route::get('/nama_nilai', [NamaPenilaianController::class, 'index_kelas']);
         Route::get('/nama_nilai/{id}', [NamaPenilaianController::class, 'list_mapel']);
-        
+
         // ajax
         Route::get('/nama_nilai/mapel_kelas/{id}', [NamaPenilaianController::class, 'show_nama_penilaian']);
+        Route::get('/nama_nilai/mapel_kelas/{id}/create', [NamaPenilaianController::class, 'create_nama_penilaian']);
+        Route::resource('/nama_nilai/mapel_kelas', NamaPenilaianController::class);
     });
- });
+});
 
 // siswa routes
 Route::middleware(['siswa'])->prefix('/siswa')->group(function () {

@@ -48,7 +48,7 @@
               <span>Penilaian</span>
             </h6>
 
-            <li class="nav-item {{ Request::is('guru/penilaian/nama_nilai') ? 'active' : ''}}"><a href="/guru/penilaian/nama_nilai"><i class="fas fa-star-half-alt"></i><span class="menu-title" data-i18n="">Nama Penilaian</span></a>
+            <li class="nav-item {{ Request::is('guru/penilaian/nama_nilai') ? 'active' : ''}}"><a href="/guru/penilaian/nama_nilai"><i class="fas fa-star-half-alt"></i><span class="menu-title" data-i18n="">Penilaian</span></a>
             </li>
 
             @endcan

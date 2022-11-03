@@ -88,6 +88,13 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
         Route::get('/nama_nilai/mapel_kelas/{id}', [NamaPenilaianController::class, 'show_nama_penilaian']);
         Route::get('/nama_nilai/mapel_kelas/{id}/create', [NamaPenilaianController::class, 'create_nama_penilaian']);
         Route::resource('/nama_nilai/mapel_kelas', NamaPenilaianController::class);
+        Route::get('/nilai_siswa/nama_nilai/{id}', [NilaiSiswaController::class, 'select_nama_nilai']);
+
+        // penilaian siswa
+        Route::get('/nilai_siswa', [NilaiSiswaController::class, 'index_kelas']);
+        Route::get('/nilai_siswa/{id}', [NilaiSiswaController::class, 'create']);
+
+        Route::post('/nilai_siswa', [NilaiSiswaController::class, 'store']);
     });
 });
 

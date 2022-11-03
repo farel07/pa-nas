@@ -37,16 +37,13 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        $messages = ([
-            'required' => 'Isien le'
-        ]);
 
         $validateData = $request->validate([
             'nama_kelas' => 'required|unique:kelas'
-        ], $messages);
+        ]);
 
         Kelas::create($validateData);
-        return redirect('/admin/master/kelas')->with('success', 'Kelas Berhasil Ditambahkan');
+        return back()->with('success', 'Kelas Berhasil Ditambahkan');
     }
 
     /**
@@ -70,7 +67,7 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.admin.master.kelas.update_kelas', [
+        return view('dashboard.admin.master.kelas.edit_kelas', [
             'kelas' => Kelas::find($id)
         ]);
     }
@@ -84,16 +81,12 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $messages = ([
-            'required' => 'Isien Le'
+        $validateData = $request->validate([
+            'nama_kelas' => 'required|unique:kelas'
         ]);
 
-        $validateData = $request->validate([
-            'nama_kelas' => 'required|unique:nama_kelas'
-        ], $messages);
-
         Kelas::where('id', $id)->update($validateData);
-        return redirect('/admin/master/kelas')->with('success', 'Kelas Berhasil DiUpdate');
+        return back()->with('success', 'Kelas Berhasil DiUpdate');
     }
 
     /**

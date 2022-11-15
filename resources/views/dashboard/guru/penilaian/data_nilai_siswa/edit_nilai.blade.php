@@ -7,18 +7,36 @@
     @csrf
     @method('put')
 
-@foreach ($nama_nilai->nilai_siswa as $ns)
+    <div class="table-responsive">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Siswa</th>
+                    <th scope="col">Nilai</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($nama_nilai->nilai_siswa as $ns)
+                    <tr class="">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $ns->user->name }}</td>
+                        <td>
+                            <input type="number" class="form-control col-5" name="nilai[]" value="{{ $ns->nilai }}">
+                            <input type="hidden" name="user_id[]" value="{{ $ns->user->id }}">
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-{{ $ns->user->name }} 
-{{ $ns->nilai }}
-<input type="text" name="nilai[]" value="{{ $ns->nilai }}">
-<input type="hidden" name="user_id[]" value="{{ $ns->user->id }}">
+    <div class="mt-2">
+        <a href="/guru/penilaian/data_nilai_siswa/{{ $nama_nilai->guru_mapel->kelas_id }}" class="btn btn-danger">Kembali</a>
+        <button class="btn btn-primary" type="submit">Perbarui</button>
+    </div>
 
-<br>
-    
-@endforeach
-
-<button class="btn btn-primary">Perbarui</button>
 </form>
 
 @endsection
+

@@ -1,4 +1,4 @@
-{{ $nama_nilai }}
+{{-- {{ $nama_nilai }} --}}
 
 <table class="table">
     <thead>

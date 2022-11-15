@@ -21,7 +21,8 @@ class MapelController extends Controller
     {
         $data = [
             'mapel' => Mapel::latest()->get(),
-            'kelas' => Kelas::latest()->get()
+            'kelas' => Kelas::latest()->get(),
+            'title' => 'Halaman Mapel'
         ];
 
         return view('dashboard.admin.master.mapel.index', $data);
@@ -30,7 +31,8 @@ class MapelController extends Controller
     public function index2()
     {
         return view('dashboard.admin.master.mapel.list_mapel', [
-            'mapel' => Mapel::latest()->get()
+            'mapel' => Mapel::latest()->get(),
+            'title' => 'List Mapel'
         ]);
     }
 
@@ -41,7 +43,9 @@ class MapelController extends Controller
      */
     public function create()
     {
-        return view('dashboard.admin.master.mapel.create_mapel');
+        return view('dashboard.admin.master.mapel.create_mapel', [
+            'title' => 'Tambah Mapel'
+        ]);
     }
 
     /**
@@ -128,7 +132,8 @@ class MapelController extends Controller
     {
         return view('dashboard.admin.master.mapel.list_kelas_mapel', [
             'kelas' => Kelas::find($id),
-            'mapel_kelas' => Guru_Mapel::where('kelas_id', $id)->latest()->get()
+            'mapel_kelas' => Guru_Mapel::where('kelas_id', $id)->latest()->get(),
+            'title' => 'Mapel Kelas'
         ]);
     }
 
@@ -136,7 +141,8 @@ class MapelController extends Controller
     {
         return view('dashboard.admin.master.mapel.add_mapel_at_class', [
             'mapel' => Mapel::latest()->get(),
-            'kelas' => Kelas::find($id)
+            'kelas' => Kelas::find($id),
+            'title' => 'Tambah Mapel Kelas'
         ]);
     }
 
@@ -164,15 +170,18 @@ class MapelController extends Controller
 
     // assign ================================================
 
-    public function assign_guru_to_mapel($id){
-        
-        return view('dashboard.admin.master.mapel.assign_guru_to_mapel',[
+    public function assign_guru_to_mapel($id)
+    {
+
+        return view('dashboard.admin.master.mapel.assign_guru_to_mapel', [
             'mapel_kelas' => Guru_Mapel::find($id),
-            'guru' => User::where('role_id', 2)->get() 
+            'guru' => User::where('role_id', 2)->get(),
+            'title' => 'Assign Guru'
         ]);
     }
 
-    public function assign_guru_kelas_mapel($id, Request $request){
+    public function assign_guru_kelas_mapel($id, Request $request)
+    {
         $validateData = $request->validate([
             'user_id' => 'required',
             'kelas_id' => 'required'
@@ -183,7 +192,8 @@ class MapelController extends Controller
         return redirect('/admin/master/kelas_mapel/' .  $request->kelas_id)->with('success', 'Berhasil menambahkan guru pada mapel');
     }
 
-    public function unassign_guru_kelas_mapel($id, Request $request){
+    public function unassign_guru_kelas_mapel($id, Request $request)
+    {
 
         Guru_Mapel::where('id', $id)->update([
             'user_id' => null
@@ -191,5 +201,4 @@ class MapelController extends Controller
 
         return redirect('/admin/master/kelas_mapel/' .  $request->kelas_id)->with('success', 'Berhasil menghapus guru pada mapel');
     }
-
 }

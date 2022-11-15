@@ -171,12 +171,12 @@ class DatabaseSeeder extends Seeder
 
 
         // ============== tambah nilai untuk siswa ================
-        Nilai_Siswa::create([
-            'user_id' => 2,
-            'mapel_id' => 1,
-            'nama_nilai_id' => 1,
-            'nilai' => 90
-        ]);
+        // Nilai_Siswa::create([
+        //     'user_id' => 2,
+        //     'mapel_id' => 1,
+        //     'nama_nilai_id' => 1,
+        //     'nilai' => 90
+        // ]);
 
         User::create([
             'username' => 'aijen',

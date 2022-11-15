@@ -125,6 +125,7 @@ Route::get('/dokumentasi', function () {
     return view('dokumentasi', [
         'users' => User::all(),
         'nilai' => Nilai_Siswa::all(),
-        'kelas' => Kelas::find(1)
+        'kelas' => Kelas::find(1),
+        'title' => 'Dokumentasi'
     ]);
 });

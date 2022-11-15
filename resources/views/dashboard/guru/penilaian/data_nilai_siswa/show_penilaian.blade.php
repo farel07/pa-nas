@@ -13,11 +13,15 @@
             
             @endforeach
         </select>
-      </div>
+    </div>
 </div>
 
 <div class="show-nama-penilaian">
 
+</div>
+
+<div class="col-md-4 mt-3">
+    <a href="/guru/penilaian/data_nilai_siswa" class="btn btn-danger">Kembali</a>
 </div>
 
 <script>

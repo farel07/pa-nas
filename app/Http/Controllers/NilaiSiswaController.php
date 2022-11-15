@@ -21,7 +21,8 @@ class NilaiSiswaController extends Controller
         //
     }
 
-    public function index_kelas(){
+    public function index_kelas()
+    {
 
         $data = [
             'user' => auth()->user()
@@ -30,17 +31,19 @@ class NilaiSiswaController extends Controller
         $kelas_mapel_id = Guru_Mapel::where('user_id', auth()->user()->id)->get('kelas_id');
 
         $data_kelas_id = [];
-        
-        for($i = 0; $i < count($kelas_mapel_id); $i++){
-            if(!in_array($kelas_mapel_id[$i]->kelas_id, $data_kelas_id)){
+
+        for ($i = 0; $i < count($kelas_mapel_id); $i++) {
+            if (!in_array($kelas_mapel_id[$i]->kelas_id, $data_kelas_id)) {
                 $data_kelas_id[] = $kelas_mapel_id[$i]->kelas_id;
                 $data['kelas'][] = Kelas::find($kelas_mapel_id[$i]->kelas_id);
             }
         }
 
-        $data['kelas_mapel'] = function($kelas_id){
+        $data['kelas_mapel'] = function ($kelas_id) {
             return Guru_Mapel::where('user_id', auth()->user()->id)->where('kelas_id', $kelas_id)->get();
         };
+
+        $data['title'] = 'Penilaian Siswa';
 
         return view('dashboard.guru.penilaian.nilai_siswa.index', $data);
     }
@@ -53,13 +56,14 @@ class NilaiSiswaController extends Controller
     public function create($id)
     {
         // penceahan errortod
-        if(!Kelas::find($id)){
+        if (!Kelas::find($id)) {
             return back();
         }
 
         $data = [
             'mapel' => Guru_Mapel::where('kelas_id', $id)->where('user_id', auth()->user()->id)->get(),
-            'kelas' => Kelas::find($id)
+            'kelas' => Kelas::find($id),
+            'title' => 'Penilaian Siswa'
         ];
 
         return view('dashboard.guru.penilaian.nilai_siswa.create_nilai_siswa', $data);
@@ -72,7 +76,7 @@ class NilaiSiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $request->validate([
             'guru_mapel_id' => 'required',
             'nama_nilai_id' => 'required',
@@ -82,12 +86,12 @@ class NilaiSiswaController extends Controller
         $validatedData['nama_nilai_id'] = $request->nama_nilai_id;
         $validatedData['user_id'] = $request->user_id;
         $validatedData['nilai'] = $request->nilai;
-  
+
 
         $fix_data = [];
-        
-        for($i = 0; $i < count($validatedData['user_id']); $i++){
-            if($validatedData['nilai'][$i] == null){
+
+        for ($i = 0; $i < count($validatedData['user_id']); $i++) {
+            if ($validatedData['nilai'][$i] == null) {
                 $nilai = 0;
             } else {
                 $nilai = $validatedData['nilai'][$i];
@@ -105,7 +109,6 @@ class NilaiSiswaController extends Controller
         Nilai_Siswa::insert($fix_data);
 
         return back()->with('success', 'Berhasil menambah nilai siswa');
-        
     }
 
     /**
@@ -153,12 +156,12 @@ class NilaiSiswaController extends Controller
         //
     }
 
-    public function select_nama_nilai($id){
+    public function select_nama_nilai($id)
+    {
         // return response()->json(Nama_Nilai::where('guru_mapel_id', $id)->get()); 
-        return view('dashboard.guru.penilaian.nilai_siswa.select_nama_nilai',[
+        return view('dashboard.guru.penilaian.nilai_siswa.select_nama_nilai', [
             'nama_nilai' => Nama_Nilai::where('guru_mapel_id', $id)->where('status', 0)->get(),
             'siswa' => Kelas::find(Guru_Mapel::find($id)->kelas_id)->user_kelas
         ]);
     }
-
 }

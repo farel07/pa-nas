@@ -15,7 +15,8 @@ class KelasController extends Controller
     public function index()
     {
         return view('dashboard.admin.master.kelas.kelas', [
-            'kelas' => Kelas::latest()->get()
+            'kelas' => Kelas::latest()->get(),
+            'title' => 'Daftar Kelas'
         ]);
     }
 
@@ -26,7 +27,9 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('dashboard.admin.master.kelas.create_kelas', []);
+        return view('dashboard.admin.master.kelas.create_kelas', [
+            'title' => 'Tambah Kelas'
+        ]);
     }
 
     /**
@@ -55,7 +58,8 @@ class KelasController extends Controller
     public function show($id)
     {
         return view('dashboard.admin.master.kelas.detail_kelas', [
-            'kelas' => Kelas::find($id)
+            'kelas' => Kelas::find($id),
+            'title' => 'List Siswa'
         ]);
     }
 

@@ -19,7 +19,8 @@ class UserController extends Controller
     public function index()
     {
         return view('dashboard.admin.master.users.users', [
-            'users' => User::all()
+            'users' => User::all(),
+            'title' => 'Halaman User'
         ]);
     }
 
@@ -102,8 +103,10 @@ class UserController extends Controller
 
         if ($user->role_id == 3) {
             $data['kelas'] = Kelas::all();
+            $data['title'] = 'Edit Data Siswa';
             return view('dashboard.admin.master.users.edit_siswa', $data);
         } elseif ($user->role_id == 2) {
+            $data['title'] = 'Edit Data Guru';
             return view('dashboard.admin.master.users.edit_guru', $data);
         }
     }
@@ -129,12 +132,12 @@ class UserController extends Controller
             $request->validate(['kelas_id' => 'required']);
             $user = User::find($id);
 
-            if(!$user->kelas_user){
+            if (!$user->kelas_user) {
                 Kelas_User::create([
                     'user_id' => $id,
                     'kelas_id' => $request->kelas_id
                 ]);
-            } else{
+            } else {
                 Kelas_User::where('user_id', $id)->update(['kelas_id' => $request->kelas_id]);
             }
 
@@ -171,20 +174,22 @@ class UserController extends Controller
 
     public function siswa()
     {
-        $data = ['siswa' => User::where('role_id', 3)->get()];
+        $data = ['siswa' => User::where('role_id', 3)->get(), 'title' => 'User Siswa'];
         return view('dashboard.admin.master.users.siswa', $data);
     }
 
     public function guru()
     {
         $data['guru'] = User::where('role_id', 2)->get();
+        $data['title'] = 'User Guru';
         return view('dashboard.admin.master.users.guru', $data);
     }
 
     public function create_siswa()
     {
         $data = [
-            'kelas' => Kelas::all()
+            'kelas' => Kelas::all(),
+            'title' => 'Tambah Data Siswa'
         ];
 
         return view('dashboard.admin.master.users.create_siswa', $data);
@@ -192,6 +197,8 @@ class UserController extends Controller
 
     public function create_guru()
     {
-        return view('dashboard.admin.master.users.create_guru');
+        return view('dashboard.admin.master.users.create_guru', [
+            'title' => 'Tambah Data Guru'
+        ]);
     }
 }

@@ -42,12 +42,15 @@ class NamaPenilaianController extends Controller
             return Guru_Mapel::where('user_id', auth()->user()->id)->where('kelas_id', $kelas_id)->get();
         };
 
+        $data['title'] = 'Rencana Penilaian';
+
         return view('dashboard.guru.penilaian.nama_nilai.index_kelas', $data);
     }
 
     public function list_mapel($id)
     {
         $data['mapel'] = Guru_Mapel::where('user_id', auth()->user()->id)->where('kelas_id', $id)->get();
+        $data['title'] = 'Rencana Penialain Kelas';
         return view('dashboard.guru.penilaian.nama_nilai.mapel_kelas', $data);
     }
 
@@ -71,7 +74,6 @@ class NamaPenilaianController extends Controller
      */
     public function create()
     {
-
     }
 
     /**

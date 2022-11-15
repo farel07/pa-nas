@@ -6,6 +6,7 @@ use App\Models\Nilai_Siswa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DataNilaiSiswaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
@@ -89,10 +90,17 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
         Route::get('/nama_nilai/mapel_kelas/{id}/create', [NamaPenilaianController::class, 'create_nama_penilaian']);
         Route::resource('/nama_nilai/mapel_kelas', NamaPenilaianController::class);
         Route::get('/nilai_siswa/nama_nilai/{id}', [NilaiSiswaController::class, 'select_nama_nilai']);
+        Route::get('/data_nilai_siswa/{id}/show_nama_nilai', [DataNilaiSiswaController::class, 'show_nama_penilaian']);
 
         // penilaian siswa
         Route::get('/nilai_siswa', [NilaiSiswaController::class, 'index_kelas']);
         Route::get('/nilai_siswa/{id}', [NilaiSiswaController::class, 'create']);
+
+        // 
+        Route::get('/data_nilai_siswa', [DataNilaiSiswaController::class, 'index']);
+        Route::get('/data_nilai_siswa/{id}', [DataNilaiSiswaController::class, 'show_penilaian']);
+        Route::get('/data_nilai_siswa/nilai_siswa/{id}/edit', [DataNilaiSiswaController::class, 'edit_nilai']);
+        Route::put('/data_nilai_siswa/{id}', [DataNilaiSiswaController::class, 'update_nilai']);
 
         Route::post('/nilai_siswa', [NilaiSiswaController::class, 'store']);
     });

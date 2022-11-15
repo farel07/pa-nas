@@ -18,4 +18,8 @@ class Nama_Nilai extends Model
     public function guru_mapel(){
         return $this->belongsTo(Guru_Mapel::class, 'guru_mapel_id', 'id');
     }
+
+    public function nilai_siswa(){
+        return $this->hasMany(Nilai_Siswa::class, 'nama_nilai_id', 'id');
+    }
 }

@@ -1,7 +1,7 @@
 <select class="form-select mb-3" aria-label="Default select example" name="nama_nilai_id">
     @if($nama_nilai->isEmpty())
         
-    <option selected>Belum ada rencana penilaian</option>
+    <option selected>Belum ada rencana penilaian terbaru</option>
 
     @else
         
@@ -27,7 +27,7 @@
       @foreach ($siswa as $s)
           
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">{{ $loop->iteration }}</th>
         <td>{{ $s->user->name }}</td>
         <input type="hidden" name="user_id[]" value="{{ $s->user->id }}">
         <td><input type="text" class="form-control col-4" name="nilai[]" id="exampleFormControlInput1"></td>

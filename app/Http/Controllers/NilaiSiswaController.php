@@ -160,4 +160,5 @@ class NilaiSiswaController extends Controller
             'siswa' => Kelas::find(Guru_Mapel::find($id)->kelas_id)->user_kelas
         ]);
     }
+
 }

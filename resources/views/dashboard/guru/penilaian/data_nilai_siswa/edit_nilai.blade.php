@@ -3,6 +3,14 @@
 @section('submenu', 'Edit Nilai')
 @section('content')
  
+
+@if (session()->has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ session('success') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <form action="/guru/penilaian/data_nilai_siswa/{{ $nama_nilai->id }}" method="post">
     @csrf
     @method('put')
@@ -22,7 +30,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $ns->user->name }}</td>
                         <td>
-                            <input type="number" class="form-control col-5" name="nilai[]" value="{{ $ns->nilai }}">
+                            <input type="number" class="form-control col-5 col-sm-2" name="nilai[]" value="{{ $ns->nilai }}">
                             <input type="hidden" name="user_id[]" value="{{ $ns->user->id }}">
                         </td>
                     </tr>

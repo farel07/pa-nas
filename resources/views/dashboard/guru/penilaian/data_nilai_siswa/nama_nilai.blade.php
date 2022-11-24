@@ -15,7 +15,7 @@
         <th scope="row">{{ $loop->iteration }}</th>
         <td>{{ $s->nama }}</td>
         <td>
-            <a href="" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+            <a href="/guru/penilaian/data_nilai_siswa/nilai_siswa/{{ $s->id }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
             <a href="/guru/penilaian/data_nilai_siswa/nilai_siswa/{{ $s->id }}/edit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a><
         </td>
       </tr>

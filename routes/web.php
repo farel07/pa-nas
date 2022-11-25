@@ -100,7 +100,6 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
         Route::get('/data_nilai_siswa', [DataNilaiSiswaController::class, 'index']);
         Route::get('/data_nilai_siswa/{id}', [DataNilaiSiswaController::class, 'show_penilaian']);
         Route::get('/data_nilai_siswa/nilai_siswa/{id}/edit', [DataNilaiSiswaController::class, 'edit_nilai']);
-        Route::get('/data_nilai_siswa/nilai_siswa/{id}', [DataNilaiSiswaController::class, 'show_nilai']);
         Route::put('/data_nilai_siswa/{id}', [DataNilaiSiswaController::class, 'update_nilai']);
 
         Route::post('/nilai_siswa', [NilaiSiswaController::class, 'store']);

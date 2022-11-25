@@ -34,7 +34,9 @@
                             <input type="hidden" name="user_id[]" value="{{ $ns->user->id }}"> --}}
                             <div class="">
                                 {{ $ns->nilai }} 
-                                <button class="btn btn-info btn-sm ml-1"><i class="far fa-edit"></i></button>
+                                <a onclick="edit({{ $ns->id }})" class="btn btn-info btn-sm ml-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fas fa-edit"></i>
+                                </a> {{-- edit --}}
                             </div>
                             
                         </td>
@@ -47,6 +49,30 @@
     <div class="mt-2">
         <a href="/guru/penilaian/data_nilai_siswa/{{ $nama_nilai->guru_mapel->kelas_id }}" class="btn btn-danger">Kembali</a>
     </div>
+
+  
+  <!-- Edit Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Nilai</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="edit_nilai">
+            
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function edit(id) {
+            $.get('/guru/penilaian/data_nilai_siswa/form_edit_nilai/' + id + '/edit', function(form_nilai) {
+                $('#edit_nilai').html(form_nilai);
+            })
+        }
+    </script>
 
 @endsection
 

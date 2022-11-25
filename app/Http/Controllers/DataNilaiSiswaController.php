@@ -64,6 +64,14 @@ class DataNilaiSiswaController extends Controller
         return view('dashboard.guru.penilaian.data_nilai_siswa.edit_nilai', $data);
     }
 
+    public function form_edit($id)
+    {
+        $data = [
+            'nilai_siswa' => Nilai_Siswa::find($id)
+        ];
+        return view('dashboard.guru.penilaian.data_nilai_siswa.form_edit', $data);
+    }
+
     public function update_nilai($id, Request $request)
     {
         // return count($request->user_id);
@@ -71,17 +79,21 @@ class DataNilaiSiswaController extends Controller
             'nilai' => 'required',
         ]);
 
-        for ($i = 0; $i < count($request->user_id); $i++) {
+        // for ($i = 0; $i < count($request->user_id); $i++) {
 
-            if ($request->nilai[$i] == null) {
-                $validateData['nilai'] = 0;
-            } else {
-                $validateData['nilai'] = $request->nilai[$i];
-            }
+        //     if ($request->nilai[$i] == null) {
+        //         $validateData['nilai'] = 0;
+        //     } else {
+        //         $validateData['nilai'] = $request->nilai[$i];
+        //     }
 
-            Nilai_Siswa::where('user_id', $request->user_id[$i])->where('nama_nilai_id', $id)->update($validateData);
-        }
+        //     Nilai_Siswa::where('user_id', $request->user_id[$i])->where('nama_nilai_id', $id)->update($validateData);
+        // }
 
-        return redirect('')->with('success', 'Berhasil mengedit nilai siswa');
+        $validateData['nilai'] = $request->nilai;
+
+        Nilai_Siswa::where('id', $id)->update($validateData);
+
+        return back()->with('success', 'Berhasil mengedit nilai siswa');
     }
 }

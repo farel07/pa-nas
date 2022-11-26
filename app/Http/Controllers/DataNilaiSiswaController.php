@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\NilaiExport;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
 use App\Models\Guru_Mapel;
 use App\Models\Kelas;
 use App\Models\Nama_Nilai;
 use App\Models\Nilai_Siswa;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DataNilaiSiswaController extends Controller
 {
@@ -95,5 +97,10 @@ class DataNilaiSiswaController extends Controller
         Nilai_Siswa::where('id', $id)->update($validateData);
 
         return back()->with('success', 'Berhasil mengedit nilai siswa');
+    }
+
+    public function export_nilai($id){
+        $nama_nilai = Nama_Nilai::find($id);
+        return Excel::download(new NilaiExport($id), 'Nilai_.' . $nama_nilai->guru_mapel->mapel->nama_mapel . '_' . $nama_nilai->nama . '_' .$nama_nilai->guru_mapel->kelas->nama_kelas . '_' . time() . '.xlsx');
     }
 }

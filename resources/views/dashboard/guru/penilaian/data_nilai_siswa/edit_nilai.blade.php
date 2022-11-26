@@ -12,7 +12,7 @@
 @endif
 
 <div class="mb-2 mr-2 d-flex justify-content-end">
-    <a href="#" class="btn btn-success">Export to Excel</a>
+    <a href="/guru/penilaian/data_nilai_siswa/nilai_siswa/export/{{ $nama_nilai->id }}" class="btn btn-success">Export <i class="fas fa-download"></i></a>
 </div>
 
     <div class="table-responsive">

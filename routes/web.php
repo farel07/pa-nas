@@ -106,6 +106,8 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
         Route::put('/data_nilai_siswa/{id}', [DataNilaiSiswaController::class, 'update_nilai']);
 
         Route::post('/nilai_siswa', [NilaiSiswaController::class, 'store']);
+        // excel
+        Route::get('/data_nilai_siswa/nilai_siswa/export/{id}', [DataNilaiSiswaController::class, 'export_nilai']);
     });
 });
 

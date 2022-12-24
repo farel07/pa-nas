@@ -20,7 +20,8 @@ class UserController extends Controller
     {
         return view('dashboard.admin.master.users.users', [
             'users' => User::all(),
-            'title' => 'Halaman User'
+            'title' => 'Halaman User',
+            'user' => auth()->user()
         ]);
     }
 
@@ -174,7 +175,7 @@ class UserController extends Controller
 
     public function siswa()
     {
-        $data = ['siswa' => User::where('role_id', 3)->get(), 'title' => 'User Siswa'];
+        $data = ['siswa' => User::where('role_id', 3)->get(), 'title' => 'User Siswa', 'user' => auth()->user()];
         return view('dashboard.admin.master.users.siswa', $data);
     }
 
@@ -182,6 +183,7 @@ class UserController extends Controller
     {
         $data['guru'] = User::where('role_id', 2)->get();
         $data['title'] = 'User Guru';
+        $data['user'] = auth()->user();
         return view('dashboard.admin.master.users.guru', $data);
     }
 
@@ -189,7 +191,8 @@ class UserController extends Controller
     {
         $data = [
             'kelas' => Kelas::all(),
-            'title' => 'Tambah Data Siswa'
+            'title' => 'Tambah Data Siswa',
+            'user' => auth()->user()
         ];
 
         return view('dashboard.admin.master.users.create_siswa', $data);
@@ -198,7 +201,8 @@ class UserController extends Controller
     public function create_guru()
     {
         return view('dashboard.admin.master.users.create_guru', [
-            'title' => 'Tambah Data Guru'
+            'title' => 'Tambah Data Guru',
+            'user' => auth()->user()
         ]);
     }
 }

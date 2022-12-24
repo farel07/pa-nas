@@ -63,7 +63,8 @@ class NilaiSiswaController extends Controller
         $data = [
             'mapel' => Guru_Mapel::where('kelas_id', $id)->where('user_id', auth()->user()->id)->get(),
             'kelas' => Kelas::find($id),
-            'title' => 'Penilaian Siswa'
+            'title' => 'Penilaian Siswa',
+            'user' => auth()->user()
         ];
 
         return view('dashboard.guru.penilaian.nilai_siswa.create_nilai_siswa', $data);
@@ -161,7 +162,8 @@ class NilaiSiswaController extends Controller
         // return response()->json(Nama_Nilai::where('guru_mapel_id', $id)->get()); 
         return view('dashboard.guru.penilaian.nilai_siswa.select_nama_nilai', [
             'nama_nilai' => Nama_Nilai::where('guru_mapel_id', $id)->where('status', 0)->get(),
-            'siswa' => Kelas::find(Guru_Mapel::find($id)->kelas_id)->user_kelas
+            'siswa' => Kelas::find(Guru_Mapel::find($id)->kelas_id)->user_kelas,
+            'user' => auth()->user()
         ]);
     }
 }

@@ -67,7 +67,7 @@
                 @enderror
               </div>
               <a href="/admin/master/user/siswa" class="btn btn-warning">Kembali</a> 
-              <button type="submit" class="btn btn-primary">Tambah</button>
+              <button type="submit" class="btn btn-primary">Edit</button>
               
             </form>
 

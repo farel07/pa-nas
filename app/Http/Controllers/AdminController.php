@@ -19,7 +19,8 @@ class AdminController extends Controller
             'mapel' => Mapel::all(),
             'guru' => User::where('role_id', 2)->get(),
             'kelas' => Kelas::all(),
-            'title' => 'Dashboard Admin'
+            'title' => 'Dashboard Admin',
+            'user' => auth()->user()
         ];
 
         return view('dashboard.index', $data);

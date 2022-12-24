@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'username' => 'fadli',
-            'password' => '123qwe',
+            'password' => bcrypt('123qwe'),
             'nisn_npsn' => 'aa922',
             'name' => 'faldi',
             'tempat_lahir' => 'asdad',

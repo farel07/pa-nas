@@ -45,7 +45,8 @@ class DataNilaiSiswaController extends Controller
         $data = [
             'mapel' => Guru_Mapel::where('kelas_id', $id)->where('user_id', auth()->user()->id)->get(),
             'kelas' => Kelas::find($id),
-            'title' => 'Data Nilai Siswa Dalam Kelas'
+            'title' => 'Data Nilai Siswa Dalam Kelas',
+            'user' => auth()->user()
         ];
 
         return view('dashboard.guru.penilaian.data_nilai_siswa.show_penilaian', $data);
@@ -54,6 +55,7 @@ class DataNilaiSiswaController extends Controller
     public function show_nama_penilaian($id)
     {
         $data['nama_nilai'] = Nama_Nilai::where('guru_mapel_id', $id)->where('status', 1)->get();
+        $data['user'] = auth()->user();
         return view('dashboard.guru.penilaian.data_nilai_siswa.nama_nilai', $data);
     }
 
@@ -61,7 +63,8 @@ class DataNilaiSiswaController extends Controller
     {
         $data = [
             'nama_nilai' => Nama_Nilai::find($id),
-            'title' => 'Edit Nilai Siswa'
+            'title' => 'Edit Nilai Siswa',
+            'user' => auth()->user()
         ];
         return view('dashboard.guru.penilaian.data_nilai_siswa.edit_nilai', $data);
     }
@@ -69,7 +72,8 @@ class DataNilaiSiswaController extends Controller
     public function form_edit($id)
     {
         $data = [
-            'nilai_siswa' => Nilai_Siswa::find($id)
+            'nilai_siswa' => Nilai_Siswa::find($id),
+            'user' => auth()->user()
         ];
         return view('dashboard.guru.penilaian.data_nilai_siswa.form_edit', $data);
     }
@@ -99,8 +103,9 @@ class DataNilaiSiswaController extends Controller
         return back()->with('success', 'Berhasil mengedit nilai siswa');
     }
 
-    public function export_nilai($id){
+    public function export_nilai($id)
+    {
         $nama_nilai = Nama_Nilai::find($id);
-        return Excel::download(new NilaiExport($id), 'Nilai_.' . $nama_nilai->guru_mapel->mapel->nama_mapel . '_' . $nama_nilai->nama . '_' .$nama_nilai->guru_mapel->kelas->nama_kelas . '_' . time() . '.xlsx');
+        return Excel::download(new NilaiExport($id), 'Nilai_.' . $nama_nilai->guru_mapel->mapel->nama_mapel . '_' . $nama_nilai->nama . '_' . $nama_nilai->guru_mapel->kelas->nama_kelas . '_' . time() . '.xlsx');
     }
 }

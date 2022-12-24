@@ -16,7 +16,8 @@ class KelasController extends Controller
     {
         return view('dashboard.admin.master.kelas.kelas', [
             'kelas' => Kelas::latest()->get(),
-            'title' => 'Daftar Kelas'
+            'title' => 'Daftar Kelas',
+            'user' => auth()->user()
         ]);
     }
 
@@ -28,7 +29,8 @@ class KelasController extends Controller
     public function create()
     {
         return view('dashboard.admin.master.kelas.create_kelas', [
-            'title' => 'Tambah Kelas'
+            'title' => 'Tambah Kelas',
+            'user' => auth()->user()
         ]);
     }
 
@@ -59,7 +61,8 @@ class KelasController extends Controller
     {
         return view('dashboard.admin.master.kelas.detail_kelas', [
             'kelas' => Kelas::find($id),
-            'title' => 'List Siswa'
+            'title' => 'List Siswa',
+            'user' => auth()->user()
         ]);
     }
 
@@ -72,7 +75,8 @@ class KelasController extends Controller
     public function edit($id)
     {
         return view('dashboard.admin.master.kelas.edit_kelas', [
-            'kelas' => Kelas::find($id)
+            'kelas' => Kelas::find($id),
+            'user' => auth()->user()
         ]);
     }
 

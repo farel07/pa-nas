@@ -45,7 +45,7 @@
               </div>
               
               <a href="/admin/master/user/guru" class="btn btn-warning">Kembali</a>
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-primary">Edit</button>
             </form>
 
             

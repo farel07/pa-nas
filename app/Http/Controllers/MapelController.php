@@ -22,7 +22,8 @@ class MapelController extends Controller
         $data = [
             'mapel' => Mapel::latest()->get(),
             'kelas' => Kelas::latest()->get(),
-            'title' => 'Halaman Mapel'
+            'title' => 'Halaman Mapel',
+            'user' => auth()->user()
         ];
 
         return view('dashboard.admin.master.mapel.index', $data);
@@ -32,7 +33,8 @@ class MapelController extends Controller
     {
         return view('dashboard.admin.master.mapel.list_mapel', [
             'mapel' => Mapel::latest()->get(),
-            'title' => 'List Mapel'
+            'title' => 'List Mapel',
+            'user' => auth()->user()
         ]);
     }
 
@@ -44,7 +46,8 @@ class MapelController extends Controller
     public function create()
     {
         return view('dashboard.admin.master.mapel.create_mapel', [
-            'title' => 'Tambah Mapel'
+            'title' => 'Tambah Mapel',
+            'user' => auth()->user()
         ]);
     }
 
@@ -88,7 +91,8 @@ class MapelController extends Controller
     public function edit($id)
     {
         return view('dashboard.admin.master.mapel.update_mapel', [
-            'mapel' => Mapel::find($id)
+            'mapel' => Mapel::find($id),
+            'user' => auth()->user()
         ]);
     }
 
@@ -133,7 +137,8 @@ class MapelController extends Controller
         return view('dashboard.admin.master.mapel.list_kelas_mapel', [
             'kelas' => Kelas::find($id),
             'mapel_kelas' => Guru_Mapel::where('kelas_id', $id)->latest()->get(),
-            'title' => 'Mapel Kelas'
+            'title' => 'Mapel Kelas',
+            'user' => auth()->user()
         ]);
     }
 
@@ -142,7 +147,8 @@ class MapelController extends Controller
         return view('dashboard.admin.master.mapel.add_mapel_at_class', [
             'mapel' => Mapel::latest()->get(),
             'kelas' => Kelas::find($id),
-            'title' => 'Tambah Mapel Kelas'
+            'title' => 'Tambah Mapel Kelas',
+            'user' => auth()->user()
         ]);
     }
 
@@ -150,7 +156,8 @@ class MapelController extends Controller
     {
         $validateData = $request->validate([
             'mapel_id' => 'required',
-            'kelas_id' => 'required'
+            'kelas_id' => 'required',
+            'user' => auth()->user()
         ]);
 
         if (Guru_Mapel::where('kelas_id', $validateData['kelas_id'])->where('mapel_id', $validateData['mapel_id'])->exists()) {
@@ -176,7 +183,8 @@ class MapelController extends Controller
         return view('dashboard.admin.master.mapel.assign_guru_to_mapel', [
             'mapel_kelas' => Guru_Mapel::find($id),
             'guru' => User::where('role_id', 2)->get(),
-            'title' => 'Assign Guru'
+            'title' => 'Assign Guru',
+            'user' => auth()->user()
         ]);
     }
 

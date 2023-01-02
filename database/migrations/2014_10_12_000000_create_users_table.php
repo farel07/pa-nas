@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('nisn_npsn')->unique();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
+            $table->string('img')->nullable();
 
             $table->bigInteger('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles')->cascadeOnDelete()->cascadeOnUpdate();

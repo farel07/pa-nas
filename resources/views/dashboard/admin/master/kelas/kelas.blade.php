@@ -37,14 +37,14 @@
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $k->nama_kelas }}</td>
                   <td>
-                    <a href="/admin/master/kelas/{{ $k->id }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="btn_edit_kelas({{ $k->id }})">
+                    <a href="/admin/master/kelas/{{ $k->id }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="btn_edit_kelas({{ $k->id }})">
                       <i class="fas fa-edit"></i>
                     </button>
                     <form action="/admin/master/kelas/{{ $k->id }}" method="POST" class="d-inline"> {{-- delete --}}
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-backspace"></i></button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-backspace"></i></button>
                     </form>
                   </td>
                 </tr>

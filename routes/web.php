@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataNilaiSiswaController;
+use App\Http\Controllers\GetNilaiSiswaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\NamaPenilaianController;
 use App\Http\Controllers\NilaiSiswaController;
+use App\Http\Controllers\ProfilSiswaController;
 use App\Models\Mapel;
 
 /*
@@ -113,8 +115,11 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
 
 // siswa routes
 Route::middleware(['siswa'])->prefix('/siswa')->group(function () {
-    Route::get('/dashboard', function () {
-        return 'hi';
+    Route::resource('/dashboard', ProfilSiswaController::class);
+    Route::post('/dashboard/{id}', [ProfilSiswaController::class, 'store']);
+    Route::put('/dashboard/newPw/{id}', [ProfilSiswaController::class, 'change_password']);
+    Route::prefix('/show')->group(function () {
+        Route::resource('/nilai', GetNilaiSiswaController::class);
     });
 });
 

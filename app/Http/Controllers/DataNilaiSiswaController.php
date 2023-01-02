@@ -44,7 +44,8 @@ class DataNilaiSiswaController extends Controller
         $data = [
             'mapel' => Guru_Mapel::where('kelas_id', $id)->where('user_id', auth()->user()->id)->get(),
             'kelas' => Kelas::find($id),
-            'title' => 'Data Nilai Siswa Dalam Kelas'
+            'title' => 'Data Nilai Siswa Dalam Kelas',
+            'user' => auth()->user()
         ];
 
         return view('dashboard.guru.penilaian.data_nilai_siswa.show_penilaian', $data);
@@ -61,7 +62,8 @@ class DataNilaiSiswaController extends Controller
     {
         $data = [
             'nama_nilai' => Nama_Nilai::find($id),
-            'title' => 'Edit Nilai Siswa'
+            'title' => 'Edit Nilai Siswa',
+            'user' => auth()->user()
         ];
         return view('dashboard.guru.penilaian.data_nilai_siswa.edit_nilai', $data);
     }
@@ -69,7 +71,8 @@ class DataNilaiSiswaController extends Controller
     public function form_edit($id)
     {
         $data = [
-            'nilai_siswa' => Nilai_Siswa::find($id)
+            'nilai_siswa' => Nilai_Siswa::find($id),
+            'user' => auth()->user()
         ];
         return view('dashboard.guru.penilaian.data_nilai_siswa.form_edit', $data);
     }

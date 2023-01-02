@@ -1,4 +1,7 @@
 {{-- {{ $nama_nilai }} --}}
+<div class="mb-2 mr-2 d-flex justify-content-end">
+  <a href="/guru/penilaian/data_nilai_siswa/nilai_siswa/export/{{ $guru_mapel->id }}" class="btn btn-success">Export <i class="fas fa-download"></i></a>
+</div>
 
 <table class="table">
     <thead>
@@ -9,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($nama_nilai as $s)
+      @foreach ($guru_mapel->nama_nilai as $s)
           
       <tr>
         <th scope="row">{{ $loop->iteration }}</th>

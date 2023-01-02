@@ -1,20 +1,61 @@
+
+
 <h1>
     Nilai siswa 
 </h1>
 
-<table>
+{{-- 
+<table style="display:inline-table;">
     <thead>
     <tr>
-        <th>Nama</th>
-        <th>Nilai</th>
+        <th><b>Nama</b></th>
+        
     </tr>
     </thead>
     <tbody>
-    @foreach($nilai_siswa as $nn)
+        
+        @foreach ($kelas->user_kelas as $s)        
         <tr>
-            <td>{{ $nn->user->name }}</td>
-            <td>{{ $nn->nilai }}</td>
+            <td>{{ $s->user->name }}</td>
         </tr>
-    @endforeach
+            @endforeach
+
+    </tbody>
+</table> --}}
+
+
+
+<table style="display:inline-table;">
+    <thead>
+        <tr>
+            
+            <th><b>Nama</b></th>
+            @foreach ($nama_nilai as $s)
+            <th><b>{{ $s->nama }}</b></th>
+            @endforeach
+        </tr>
+    </thead>
+    <tbody>
+        
+        @foreach ($kelas->user_kelas as $uk)
+            <tr>
+                <td>{{ $uk->user->name }}</td>
+            
+
+        @foreach ($nama_nilai as $s)
+
+        @foreach ($nilai_siswa($uk->user->id, $s->id) as $ns)
+            
+        
+            {{-- <td>{{ $nilai_siswa($uk->user->id, 1) }}</td> --}}
+            <td>{{ $ns->nilai }}</td>
+        
+
+        @endforeach
+            
+        @endforeach
+        </tr>
+        @endforeach
+
     </tbody>
 </table>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\NilaiExport;
-use App\Models\Mapel;
 use Illuminate\Http\Request;
 use App\Models\Guru_Mapel;
 use App\Models\Kelas;
@@ -53,7 +52,8 @@ class DataNilaiSiswaController extends Controller
 
     public function show_nama_penilaian($id)
     {
-        $data['nama_nilai'] = Nama_Nilai::where('guru_mapel_id', $id)->where('status', 1)->get();
+        // $data['nama_nilai'] = Nama_Nilai::where('guru_mapel_id', $id)->where('status', 1)->get();
+        $data['guru_mapel'] = Guru_Mapel::find($id);
         return view('dashboard.guru.penilaian.data_nilai_siswa.nama_nilai', $data);
     }
 
@@ -100,7 +100,14 @@ class DataNilaiSiswaController extends Controller
     }
 
     public function export_nilai($id){
-        $nama_nilai = Nama_Nilai::find($id);
-        return Excel::download(new NilaiExport($id), 'Nilai_.' . $nama_nilai->guru_mapel->mapel->nama_mapel . '_' . $nama_nilai->nama . '_' .$nama_nilai->guru_mapel->kelas->nama_kelas . '_' . time() . '.xlsx');
+        $guru_mapel = Guru_Mapel::find($id);
+        // return view('dashboard.guru.penilaian.data_nilai_siswa.export_nilai',[
+        //     'nama_nilai' => Nama_Nilai::where('guru_mapel_id', $id)->get(),
+        //     'kelas' => Kelas::find(Guru_Mapel::find($id)->kelas_id),
+        //     'nilai_siswa' => function($user_id, $nama_nilai_id){
+        //         return Nilai_Siswa::where('user_id', $user_id)->where('nama_nilai_id', $nama_nilai_id)->get();
+        //     }
+        // ]);
+        return Excel::download(new NilaiExport($id), 'Nilai_.' . $guru_mapel->mapel->nama_mapel . '_'  . '_' .$guru_mapel->kelas->nama_kelas . '_' . time() . '.xlsx');
     }
 }

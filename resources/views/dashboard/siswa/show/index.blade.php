@@ -121,12 +121,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form action="/siswa/dashboard/{{ $user->id }}" method="POST" enctype="multipart/form-data">
+        <form action="/siswa/dashboard" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-body">
                 <div class="mb-2">
                     <img src="{{ asset('storage/default.jpg') }}" class="img-fluid d-block img-preview" width="100">
-                    <input class="form-control mt-1" type="file" id="image" name="img" onchange="previewImage()">
+                    <input class="form-control mt-1" type="file" id="image" name="img">
                 </div>
             </div>
             <div class="modal-footer">
@@ -173,6 +173,8 @@
     </div>
 </div>
 
+{{-- ijabo crop tool --}}
+<script src="{{ asset('ijaboCropTool/ijaboCropTool.min.js') }}"></script>
 <script>
     function previewImage() {
             const image = document.querySelector('#image');
@@ -187,6 +189,21 @@
                 imgPreview.src = oFREvent.target.result;
             }
         }
+
+        $('#image').ijaboCropTool({
+
+            processUrl:'{{ route("change_profile") }}',
+            buttonsText:['SAVE','CANCEL'],
+            withCSRF:['_token','{{ csrf_token() }}'],
+            onSuccess:function(message, element, status){
+                alert(message);
+                document.location.href = 'http://127.0.0.1:8000/siswa/dashboard'
+            },
+            onError:function(message, element, status){
+                alert('Maximum image size is 2mb');
+            }
+
+            });
 
     function previewImage2() {
             const image = document.querySelector('#image2');

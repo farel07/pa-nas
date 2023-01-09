@@ -64,7 +64,7 @@
               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online">
 
                 @if (!$user->img)
-                  <img src="{{ asset('storage/default.jpg') }}" alt="avatar">
+                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="avatar">
                 @else
                   <img src="{{ asset('storage/' . $user->img) }}" alt="avatar">
                 @endif
@@ -74,7 +74,7 @@
                   <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online">
 
                     @if (!$user->img)
-                      <img src="{{ asset('storage/default.jpg') }}" alt="avatar">
+                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="avatar">
                     @else
                       <img src="{{ asset('storage/' . $user->img) }}" alt="avatar">
                     @endif

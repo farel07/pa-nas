@@ -125,7 +125,7 @@
             @csrf
             <div class="modal-body">
                 <div class="mb-2">
-                    <img src="{{ asset('storage/default.jpg') }}" class="img-fluid d-block img-preview" width="100">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="img-fluid d-block img-preview" width="100">
                     <input class="form-control mt-1" type="file" id="image" name="img">
                 </div>
             </div>
@@ -156,11 +156,10 @@
 
         <form action="/siswa/dashboard/{{ $user->id }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="modal-body">
                 <div class="mb-2">
-                    <img src="{{ asset('storage/' . $user->img) }}" class="img-fluid d-block img-preview2" width="100">
-                    <input class="form-control mt-1" type="file" id="image2" name="img" onchange="previewImage2()">
+                    <img src="{{ asset('storage/' . $user->img) }}" class="img-fluid d-block img-preview" width="100">
+                    <input class="form-control mt-1" type="file" id="image" name="img" onchange="previewimage()">
                 </div>
             </div>
             <div class="modal-footer">
@@ -200,7 +199,7 @@
                 document.location.href = 'http://127.0.0.1:8000/siswa/dashboard'
             },
             onError:function(message, element, status){
-                alert('Maximum image size is 2mb');
+                alert('Maximum image size is 6mb');
             }
 
             });

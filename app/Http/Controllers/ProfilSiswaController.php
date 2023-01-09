@@ -88,7 +88,7 @@ class ProfilSiswaController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function change_pict(Request $request, $id)
     {
         $validateData = $request->validate([
             'img' => 'image|file|max:6000' // max ukuran file adalah 6 mb

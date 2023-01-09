@@ -52,7 +52,8 @@ class GetNilaiSiswaController extends Controller
     {
         return view('dashboard.siswa.show.nilai.showKelasSiswa', [
             'kelas' => Kelas::find($id),
-            'title' => 'Mapel Kelas'
+            'title' => 'Mapel Kelas',
+            'user' => auth()->user()
         ]);
     }
 

@@ -88,7 +88,7 @@ class ProfilSiswaController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function change_pict(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $validateData = $request->validate([
             'img' => 'image|file|max:6000' // max ukuran file adalah 6 mb
@@ -102,7 +102,11 @@ class ProfilSiswaController extends Controller
         }
 
         User::find($id)->update($validateData);
-        return back()->with('success', 'Foto Profil Berhasil di Ubah');
+        // return back()->with('success', 'Foto Profil Berhasil di Ubah');
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Profile picture has been changed!',
+        ]);
     }
 
     public function change_password(Request $request, $id)

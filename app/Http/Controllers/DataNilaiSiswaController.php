@@ -55,6 +55,7 @@ class DataNilaiSiswaController extends Controller
     {
         // $data['nama_nilai'] = Nama_Nilai::where('guru_mapel_id', $id)->where('status', 1)->get();
         $data['guru_mapel'] = Guru_Mapel::find($id);
+        $data['nama_nilai'] = Nama_Nilai::where('guru_mapel_id', $id)->where('status', 1)->get();
         return view('dashboard.guru.penilaian.data_nilai_siswa.nama_nilai', $data);
     }
 

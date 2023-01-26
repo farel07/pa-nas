@@ -15,6 +15,7 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\NamaPenilaianController;
 use App\Http\Controllers\NilaiSiswaController;
 use App\Http\Controllers\ProfilSiswaController;
+use App\Http\Controllers\RencanaPenilaian;
 use App\Models\Mapel;
 
 /*
@@ -62,6 +63,9 @@ Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
         Route::get('/kelas_mapel/assign/{id}', [MapelController::class, 'assign_guru_to_mapel']);
         Route::put('/kelas_mapel/assign/{id}', [MapelController::class, 'assign_guru_kelas_mapel']);
         Route::put('/kelas_mapel/unassign/{id}', [MapelController::class, 'unassign_guru_kelas_mapel']);
+
+        // rencana penilaian =========================================
+        Route::resource('/rencana_penilaian', RencanaPenilaian::class);
     });
 
     // Route::prefix('/data')->group(function (){
@@ -121,6 +125,7 @@ Route::middleware(['siswa'])->prefix('/siswa')->group(function () {
     Route::prefix('/show')->group(function () {
         Route::resource('/nilai', GetNilaiSiswaController::class);
     });
+    Route::get('show/nilai/nilai_siswa/{id}', [GetNilaiSiswaController::class, 'nilai_siswa']);
 });
 
 // auth route

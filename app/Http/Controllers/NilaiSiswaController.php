@@ -83,6 +83,12 @@ class NilaiSiswaController extends Controller
             'nama_nilai_id' => 'required',
             'user_id' => 'required',
         ]);
+        
+        for($i = 0; $i < count($request->nilai); $i++){
+            $request->validate([
+                'nilai.' . $i => 'required|integer|min:0|max:100'
+            ]);
+        }
 
         $validatedData['nama_nilai_id'] = $request->nama_nilai_id;
         $validatedData['user_id'] = $request->user_id;

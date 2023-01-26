@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('nama');
             $table->bigInteger('teknik_nilai_id')->unsigned();
             $table->foreign('teknik_nilai_id')->references('id')->on('teknik_nilai')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->bigInteger('guru_mapel_id')->unsigned();
-            $table->foreign('guru_mapel_id')->references('id')->on('guru_mapel')->cascadeOnDelete()->cascadeOnUpdate();
             $table->tinyInteger('status');
             $table->timestamps();
         });

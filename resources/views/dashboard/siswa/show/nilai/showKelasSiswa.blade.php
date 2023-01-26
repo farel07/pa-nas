@@ -20,8 +20,11 @@
                       <th scope="row">{{ $loop->iteration }}</th>
                       <td>{{ $km->nama_mapel }}</td>
                       <td>
-                        <button onclick="show_get_nilai_siswa()" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></button>
+                        <button onclick="show_get_nilai_siswa({{ $km->id }})" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></button>
                       </td>
+                      {{-- <td>
+                        {{ $guru_mapel($km->id, $kelas->id)->nama_nilai }}
+                      </td> --}}
                     </tr>
     
                   @endforeach
@@ -30,11 +33,25 @@
         </div>
 
         <div class="col-6">
-            <div class="cont">
+            <table class="table">
+              <thead>
+                <th>Penilaian</th>
+                <th>Nilai</th>
+              </thead>
+              <tbody class="nilai-table">
                 
-            </div>
+              </tbody>
+            </table>
         </div>
 
     </div>
 
 @endsection
+
+<script>
+  function show_get_nilai_siswa(mapel_id){
+    $.get('/siswa/show/nilai/nilai_siswa/' + mapel_id, function(nilai_siswa){
+        $('.nilai-table').html(nilai_siswa)
+    })
+  }
+</script>

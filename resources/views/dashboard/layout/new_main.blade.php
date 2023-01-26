@@ -63,20 +63,20 @@
             <ul class="nav navbar-nav float-right">
               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online">
 
-                @if (!$user->img)
+                @if (!auth()->user()->img)
                   <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="avatar">
                 @else
-                  <img src="{{ asset('storage/' . $user->img) }}" alt="avatar">
+                  <img src="{{ asset('storage/' . auth()->user()->img) }}" alt="avatar">
                 @endif
                 
                 <i></i></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
                   <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online">
 
-                    @if (!$user->img)
+                    @if (!auth()->user()->img)
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="avatar">
                     @else
-                      <img src="{{ asset('storage/' . $user->img) }}" alt="avatar">
+                      <img src="{{ asset('storage/' . auth()->user()->img) }}" alt="avatar">
                     @endif
                     
                     <span class="user-name text-bold-700">{{ auth()->user()->name }}</span></span></a>

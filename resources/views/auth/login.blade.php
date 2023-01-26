@@ -81,10 +81,16 @@
     <div class="form-floating">
       <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username">
       <label for="floatingInput">Username</label>
+      @error('username')
+        <small class="text-danger">{{ $message }}</small>
+      @enderror
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
       <label for="floatingPassword">Password</label>
+      @error('username')
+      <small class="text-danger">{{ $message }}</small>
+      @enderror
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>

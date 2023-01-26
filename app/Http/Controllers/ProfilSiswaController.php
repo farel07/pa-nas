@@ -102,7 +102,11 @@ class ProfilSiswaController extends Controller
         }
 
         User::find($id)->update($validateData);
-        return back()->with('success', 'Foto Profil Berhasil di Ubah');
+        // return back()->with('success', 'Foto Profil Berhasil di Ubah');
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Profile picture has been changed!',
+        ]);
     }
 
     public function change_password(Request $request, $id)

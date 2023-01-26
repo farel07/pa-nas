@@ -121,6 +121,7 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
 Route::middleware(['siswa'])->prefix('/siswa')->group(function () {
     Route::resource('/dashboard', ProfilSiswaController::class);
     Route::post('/dashboard/edit_pict', [ProfilSiswaController::class, 'store'])->name('change_profile');
+    Route::put('/dashboard/edit_pict', [ProfilSiswaController::class, 'update'])->name('change_profile2');
     Route::put('/dashboard/newPw/{id}', [ProfilSiswaController::class, 'change_password']);
     Route::prefix('/show')->group(function () {
         Route::resource('/nilai', GetNilaiSiswaController::class);

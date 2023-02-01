@@ -30,7 +30,7 @@
             </li>
             <li class="nav-item {{ Request::is('admin/master/mapel*') ? 'active' : ''}}"><a href="/admin/master/mapel"><i class="fas fa-book"></i><span class="menu-title" data-i18n="">Mapel</span></a>
             </li>
-            <li class="nav-item"><a href="/admin/master/rencana_penilaian"><i class="fas fa-tasks"></i><span class="menu-title" data-i18n="">Rencana Penilaian</span></a>
+            <li class="nav-item {{ Request::is('admin/master/rencana_penilaian*') ? 'active' : ''}}"><a href="/admin/master/rencana_penilaian"><i class="fas fa-tasks"></i><span class="menu-title" data-i18n="">Rencana Penilaian</span></a>
             </li>
 
             @endcan

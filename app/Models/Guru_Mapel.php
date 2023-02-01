@@ -26,4 +26,8 @@ class Guru_Mapel extends Model
     public function nama_nilai(){
         return $this->hasMany(Nama_Nilai::class, 'guru_mapel_id', 'id');
     }
+
+    public function avg_nilai(){
+        return $this->hasMany(AvgNilai::class, 'guru_mapel_id', 'id');
+    }
 }

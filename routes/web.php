@@ -113,7 +113,9 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
 
         Route::post('/nilai_siswa', [NilaiSiswaController::class, 'store']);
         // excel
+        Route::get('/data_nilai_siswa/nilai_siswa/avg/{id}', [DataNilaiSiswaController::class, 'avg_nilai']);
         Route::get('/data_nilai_siswa/nilai_siswa/export/{id}', [DataNilaiSiswaController::class, 'export_nilai']);
+        Route::post('/data_nilai_siswa/nilai_siswa/avg/{id}/store', [DataNilaiSiswaController::class, 'avg_nilai_store'])->name('avg_nilai_store');
     });
 });
 

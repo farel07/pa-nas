@@ -1,6 +1,7 @@
 {{-- {{ $nama_nilai }} --}}
-<div class="mb-2 mr-2 d-flex justify-content-end">
-  <a href="/guru/penilaian/data_nilai_siswa/nilai_siswa/export/{{ $guru_mapel->id }}" class="btn btn-success">Export <i class="fas fa-download"></i></a>
+<div class="mb-2 mr-2">
+  <a href="/guru/penilaian/data_nilai_siswa/nilai_siswa/avg/{{ $guru_mapel->id }}" class="btn btn-primary">Hitung Rata-Rata</a>
+  <a href="/guru/penilaian/data_nilai_siswa/nilai_siswa/export/{{ $guru_mapel->id }}" class="btn btn-success float-end">Export <i class="fas fa-download"></i></a>
 </div>
 
 <table class="table">

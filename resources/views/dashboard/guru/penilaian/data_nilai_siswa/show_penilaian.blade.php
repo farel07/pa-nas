@@ -3,6 +3,13 @@
 @section('submenu', 'Show Penilaian')
 @section('content')
 
+@if (session()->has('success'))
+<div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+  {{ session('success') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <div class="col-md-4">
     <div class="input-group mb-3">
         <select class="form-select" id="inputGroupSelect01" onchange="show_nama_nilai(this)">
@@ -15,6 +22,8 @@
         </select>
     </div>
 </div>
+
+
 
 <div class="show-nama-penilaian">
 

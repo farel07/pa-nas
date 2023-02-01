@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nama_nilai', function (Blueprint $table) {
+        Schema::create('avg_nilai', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->bigInteger('teknik_nilai_id')->unsigned();
-            $table->foreign('teknik_nilai_id')->references('id')->on('teknik_nilai')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->bigInteger('mapel_id')->unsigned();
+            $table->foreign('mapel_id')->references('id')->on('mapel')->cascadeOnDelete()->cascadeOnUpdate();
             $table->bigInteger('guru_mapel_id')->unsigned();
             $table->foreign('guru_mapel_id')->references('id')->on('guru_mapel')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->tinyInteger('status');
+            $table->integer('avg_nilai');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nama_nilai');
+        Schema::dropIfExists('avg_nilai');
     }
 };

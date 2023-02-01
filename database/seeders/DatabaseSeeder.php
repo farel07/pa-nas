@@ -151,18 +151,21 @@ class DatabaseSeeder extends Seeder
         Nama_Nilai::create([
             'nama' => 'Ulangan harian 1',
             'teknik_nilai_id' => 1,
-            'status' => 0
+            'status' => 0,
+            'guru_mapel_id' => 1
         ]);
         Nama_Nilai::create([
             'nama' => 'Ulangan harian 2',
             'teknik_nilai_id' => 1,
-            'status' => 0
+            'status' => 0,
+            'guru_mapel_id' => 1
         ]);
 
         Nama_Nilai::create([
             'nama' => 'Ulangan harian 1',
             'teknik_nilai_id' => 1,
-            'status' => 0
+            'status' => 0,
+            'guru_mapel_id' => 1
         ]);
 
 

@@ -1,4 +1,4 @@
-
+  
 
 
 
@@ -194,7 +194,7 @@ iframe {
 .login100-form {
   width: 100%;
   border-radius: 10px;
-  background-color: rgb(7, 25, 111);
+  background-color: rgb(224, 224, 224);
 }
 
 .login100-form-logo {
@@ -233,14 +233,14 @@ iframe {
 .wrap-input100 {
   width: 100%;
   position: relative;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid #452f94;
   padding: 29px 0;
 }
 
 .input100 {
   font-family: Ubuntu-Regular;
   font-size: 20px;
-  color: #eeecec;
+  color: #1a3281;
   line-height: 1.2;
 
   display: block;
@@ -255,7 +255,7 @@ iframe {
 }
 
 .input100::placeholder {
-  color: #c9c8c8;
+  color: #452f94;
 }
 
 /*---------------------------------------------*/ 
@@ -283,7 +283,7 @@ iframe {
   -moz-transition: all 0.4s;
   transition: all 0.4s;
 
-  background: #d41872;
+  background: #180d52;
   background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
   background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
   background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
@@ -293,7 +293,7 @@ iframe {
 .focus-input100::after {
   font-family: Linearicons-Free;
   font-size: 18px;
-  color: #e8e8e8;
+  color: #251c75;
 
   content: attr(data-placeholder);
   display: block;
@@ -368,7 +368,7 @@ iframe {
   height: 42px;
   border-radius: 21px;
 
-  background: #0f0465;
+  background: #270c02;
   background: -webkit-linear-gradient(left, #065cc6, #073eb7, #0869df);
   background: -o-linear-gradient(left, #065cc6, #073eb7, #065cc6);
   background: -moz-linear-gradient(left, #065cc6, #073eb7, #065cc6);
@@ -390,7 +390,7 @@ iframe {
   width: 100%;
   height: 100%;
   border-radius: 21px;
-  background-color: #555555;
+  background-color: #717eec;
   top: 0;
   left: 0;
   opacity: 0;

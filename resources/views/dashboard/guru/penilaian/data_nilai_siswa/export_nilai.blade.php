@@ -4,26 +4,6 @@
     Nilai siswa 
 </h1>
 
-{{-- 
-<table style="display:inline-table;">
-    <thead>
-    <tr>
-        <th><b>Nama</b></th>
-        
-    </tr>
-    </thead>
-    <tbody>
-        
-        @foreach ($kelas->user_kelas as $s)        
-        <tr>
-            <td>{{ $s->user->name }}</td>
-        </tr>
-            @endforeach
-
-    </tbody>
-</table> --}}
-
-
 
 <table style="display:inline-table;">
     <thead>
@@ -33,6 +13,7 @@
             @foreach ($nama_nilai as $s)
             <th><b>{{ $s->nama }}</b></th>
             @endforeach
+            <th>Rata-Rata</th>
         </tr>
     </thead>
     <tbody>
@@ -54,6 +35,16 @@
         @endforeach
             
         @endforeach
+        
+        @if ($avg($uk->user->id, $nama_nilai[0]->guru_mapel_id)->isEmpty())
+            
+
+        @else
+        
+        <td>{{ $avg($uk->user->id, $nama_nilai[0]->guru_mapel_id)[0]->avg_nilai }}</td>
+            
+        @endif
+
         </tr>
         @endforeach
 

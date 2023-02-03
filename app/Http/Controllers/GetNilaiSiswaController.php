@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Mapel;
+use App\Models\AvgNilai;
 use App\Models\Guru_Mapel;
 use App\Models\Nama_Nilai;
 use App\Models\Nilai_Siswa;
@@ -19,9 +20,14 @@ class GetNilaiSiswaController extends Controller
      */
     public function index()
     {
-        return view('dashboard.siswa.show.nilai.index', [
-            'title' => 'Kelas Siswa',
-            'user' => auth()->user()
+        $kelas = Kelas::find(auth()->user()->kelas_user->kelas->id);
+        return view('dashboard.siswa.show.nilai.showKelasSiswa', [
+            'kelas' => $kelas,
+            'title' => 'Mapel Kelas',
+            'user' => auth()->user(),
+            'guru_mapel' => function($mapel_id, $kelas_id){
+                return Guru_Mapel::where('mapel_id', $mapel_id)->where('kelas_id', $kelas_id)->get()[0];
+            }
         ]);
     }
 
@@ -54,13 +60,17 @@ class GetNilaiSiswaController extends Controller
      */
     public function show($id)
     {   
-        $kelas = Kelas::find($id);
-        return view('dashboard.siswa.show.nilai.showKelasSiswa', [
-            'kelas' => $kelas,
-            'title' => 'Mapel Kelas',
-            'user' => auth()->user(),
+        return view('dashboard.siswa.show.nilai.show_nilai', [
             'guru_mapel' => function($mapel_id, $kelas_id){
                 return Guru_Mapel::where('mapel_id', $mapel_id)->where('kelas_id', $kelas_id)->get()[0];
+            },
+            'mapel' => Mapel::find($id),
+            'nilai_siswa' => function($user_id, $nama_nilai_id){
+                return Nilai_Siswa::where('user_id', $user_id)->where('nama_nilai_id', $nama_nilai_id)->get();
+            },
+            'title' => 'Nilai Siswa',
+            'avg' => function($guru_mapel_id){
+                return AvgNilai::where('user_id', auth()->user()->id)->where('guru_mapel_id', $guru_mapel_id)->first();
             }
         ]);
     }

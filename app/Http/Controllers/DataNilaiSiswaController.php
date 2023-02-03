@@ -141,7 +141,7 @@ class DataNilaiSiswaController extends Controller
             $data_nilai[] = $nilai;
             }
 
-            if(Guru_Mapel::find($id)->avg_nilai->isEmpty()){
+            if(AvgNilai::where('user_id', $uk->user->id)->where('guru_mapel_id', Guru_Mapel::find($id)->id)->get()->isEmpty()){
             
                 AvgNilai::create([
                     'user_id' => $uk->user->id,

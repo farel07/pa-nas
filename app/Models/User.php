@@ -40,5 +40,9 @@ class User extends Authenticatable
         return $this->hasMany(Nilai_Siswa::class, 'user_id', 'id');
     }
 
+    public function avg_nilai(){
+        return $this->hasMany(AvgNilai::class, 'user_id', 'id');
+    }
+
 
 }

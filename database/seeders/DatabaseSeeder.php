@@ -12,6 +12,7 @@ use App\Models\Mapel;
 use App\Models\Nama_Nilai;
 use App\Models\Nilai_Siswa;
 use App\Models\Role;
+use App\Models\System;
 use App\Models\Teknik_Nilai;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -191,6 +192,11 @@ class DatabaseSeeder extends Seeder
         Kelas_User::create([
             'user_id' => 5,
             'kelas_id' => 1
+        ]);
+
+        System::create([
+            'app_name' => 'Default',
+            'app_logo' => 'system-logo/default.png'
         ]);
     }
 }

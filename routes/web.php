@@ -16,6 +16,7 @@ use App\Http\Controllers\NamaPenilaianController;
 use App\Http\Controllers\NilaiSiswaController;
 use App\Http\Controllers\ProfilSiswaController;
 use App\Http\Controllers\RencanaPenilaian;
+use App\Http\Controllers\SystemController;
 use App\Models\Mapel;
 
 /*
@@ -41,6 +42,10 @@ Route::get('/home', function () {
 
 // admin routes
 Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
+    Route::resource('/system', SystemController::class);
+    Route::post('/system', [SystemController::class, 'upload'])->name('app_logo');
+    Route::put('/system/1', [SystemController::class, 'update']);
+    Route::put('/system_hapus_gambar', [SystemController::class, 'delete_logo']);
     Route::get('/dashboard', [AdminController::class, 'index']);
     Route::prefix('/master')->group(function () {
         // user ==================================================================

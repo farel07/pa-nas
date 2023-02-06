@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item {{ Request::is('siswa/show/nilai*') ? 'active' : ''}}">
-              <a href="/siswa/show/nilai/{{ auth()->user()->kelas_user->kelas->id }}"><i class="ft-user"></i><span class="menu-title">Nilai Siswa</span></a>
+              <a href="/siswa/show/nilai"><i class="ft-user"></i><span class="menu-title">Nilai Siswa</span></a>
             </li>
 
             @endcan

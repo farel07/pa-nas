@@ -46,11 +46,21 @@
 <tfoot>
     <td><b>#</b></td>
     <td><b>Rata-Rata</b></td>
-    <td><b>{{ $avg($guru_mapel($mapel->id, auth()->user()->kelas_user->id)->id)->avg_nilai }}</b></td>
+    <td>
+        <b>
+            @if (!$avg($guru_mapel($mapel->id, auth()->user()->kelas_user->id)->id))
+                Belum Ada Rata-Rata
+            @else 
+                {{ $avg($guru_mapel($mapel->id, auth()->user()->kelas_user->id)->id)->avg_nilai }}
+            @endif
+        </b>
+    </td>
 </tfoot>
 
     </tbody>
 </table>
+
+<a href="/siswa/show/nilai" class="btn btn-danger btn-sm">Kembali</a>
 
 </div>
 

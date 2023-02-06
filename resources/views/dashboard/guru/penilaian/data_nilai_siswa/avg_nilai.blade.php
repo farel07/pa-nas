@@ -11,7 +11,7 @@
             <p class="text-danger">{{ $error }}</p>
         @endforeach
 
-@endif
+    @endif
 
     <form action="{{ route('avg_nilai_store', $guru_mapel->id) }}" method="post">
     @csrf
@@ -23,9 +23,9 @@
         
     <input type="hidden" name="nama_nilai_id[]" value="{{ $nn->id }}">
 
-    <div class="input-group input-group-sm mb-1 col-4">
+    <div class="input-group input-group-sm mb-1 col-6">
         <label for="" class="col-form-label">{{ $nn->nama }}</label>
-        <input type="text" name="persentase[]" class="form-control">
+        <input type="number" name="persentase[]" class="form-control ml-2">
         <span class="input-group-text" id="inputGroup-sizing-sm"><b>%</b></span>
     </div>
 
@@ -33,7 +33,11 @@
 
     @endforeach
 
-    <button class="btn btn-success mt-2">Hitung</button>
+    <div class="mt-3">
+        <a href="/guru/penilaian/data_nilai_siswa/{{ $guru_mapel->kelas_id }}" class="btn btn-danger">Kembali</a>
+        <button class="btn btn-success">Hitung</button>
+    </div>
+    
 
     </form>
 

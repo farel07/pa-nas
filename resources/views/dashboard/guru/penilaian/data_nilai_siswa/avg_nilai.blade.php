@@ -23,9 +23,9 @@
         
     <input type="hidden" name="nama_nilai_id[]" value="{{ $nn->id }}">
 
-    <div class="input-group input-group-sm mb-1 col-6">
-        <label for="" class="col-form-label">{{ $nn->nama }}</label>
-        <input type="number" name="persentase[]" class="form-control ml-2">
+    <div class="input-group input-group-sm mb-1 col-md-8">
+        <label for="" class="col-form-label col-md-7">{{ $nn->nama }}</label>
+        <input type="number" name="persentase[]" class="form-control ml-2 col-md-5" min="1" max="100">
         <span class="input-group-text" id="inputGroup-sizing-sm"><b>%</b></span>
     </div>
 

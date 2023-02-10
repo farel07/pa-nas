@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori_Nilai;
 use App\Models\Nama_Nilai;
 use App\Models\Teknik_Nilai;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class RencanaPenilaian extends Controller
     {
         return view('dashboard.admin.master.rencana_penilaian.index', [
             'title' => 'Rencana penilaian',
-            'nama_nilai' => Nama_Nilai::all()
+            'teknik_nilai' => Teknik_Nilai::latest()->get()
         ]);
     }
 
@@ -30,7 +31,7 @@ class RencanaPenilaian extends Controller
     {
         return view('dashboard.admin.master.rencana_penilaian.create', [
             'title' => 'Tambah Rencana Penilaian',
-            'teknik' => Teknik_Nilai::latest()->get()
+            'kategori_nilai' => Kategori_Nilai::latest()->get()
         ]);
     }
 
@@ -43,13 +44,11 @@ class RencanaPenilaian extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required',
-            'teknik_nilai_id' => 'required'
+            'teknik' => 'required',
+            'kategori_nilai_id' => 'required'
         ]);
 
-        $validateData['status'] = 1;
-
-        Nama_Nilai::create($validateData);
+        Teknik_Nilai::create($validateData);
         return back()->with('success', 'Rencana Penilaian Berhasil Ditambahkan');
     }
 
@@ -74,8 +73,8 @@ class RencanaPenilaian extends Controller
     {
         return view('dashboard.admin.master.rencana_penilaian.edit', [
             'title' => 'Edit Rencana Penilaian',
-            'nama_nilai' => Nama_Nilai::find($id),
-            'teknik' => Teknik_Nilai::latest()->get()
+            'teknik_nilai' => Teknik_Nilai::find($id),
+            'kategori_nilai' => Kategori_Nilai::latest()->get()
         ]);
     }
 
@@ -89,11 +88,11 @@ class RencanaPenilaian extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
-            'nama' => 'required',
-            'teknik_nilai_id' => 'required'
+            'teknik' => 'required',
+            'kategori_nilai_id' => 'required'
         ]);
 
-        Nama_Nilai::find($id)->update($validateData);
+        Teknik_Nilai::find($id)->update($validateData);
         return back()->with('success', 'Rencana Penilaian Berhasil Di Update');
     }
 
@@ -105,7 +104,7 @@ class RencanaPenilaian extends Controller
      */
     public function destroy($id)
     {
-        Nama_Nilai::destroy($id);
+        Teknik_Nilai::destroy($id);
 
         return back()->with('success', 'Rencana Penilaian Berhasil Di Hapus');
     }

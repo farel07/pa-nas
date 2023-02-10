@@ -1,19 +1,20 @@
 <h5 class="mb-3">Edit Rencana Penilaian</h5>
 
-<form action="/admin/master/rencana_penilaian/{{ $nama_nilai->id }}" method="POST">
+<form action="/admin/master/rencana_penilaian/{{ $teknik_nilai->id }}" method="POST">
     @csrf
     @method('PUT')
     <div class="mb-2">
-        <label class="form-label">Nama Penilaian</label>
-        <input type="text" class="form-control" name="nama" value="{{ $nama_nilai->nama }}">
+        <label class="form-label">Teknik Penilaian</label>
+        <input type="text" class="form-control" name="teknik" value="{{ $teknik_nilai->teknik }}">
     </div>
     <div class="mb-2">
-        <select name="teknik_nilai_id" class="form-select">
-            @foreach ($teknik as $t)
-                @if ($t->id == $nama_nilai->teknik_nilai_id)
-                    <option value="{{ $t->id }}" selected>{{ $t->teknik }}</option>
+        <label for="form-label">Kategori Penilaian</label>
+        <select name="kategori_nilai_id" class="form-select">
+            @foreach ($kategori_nilai as $kn)
+                @if ($kn->id == $teknik_nilai->kategori_nilai->id)
+                    <option value="{{ $kn->id }}" selected>{{ $kn->kategori }}</option>
                 @else
-                    <option value="{{ $t->id }}">{{ $t->teknik }}</option>
+                    <option value="{{ $kn->id }}">{{ $kn->kategori }}</option>
                 @endif
             @endforeach
         </select>

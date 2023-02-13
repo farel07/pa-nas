@@ -32,20 +32,20 @@
             <thead>
                 <tr class="table-primary">
                     <th scope="col">No</th>
-                    <th scope="col">Nama Nilai</th>
                     <th scope="col">Teknik Nilai</th>
+                    <th scope="col">Kategori Nilai</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($nama_nilai as $nn)
+                @foreach ($teknik_nilai as $tn)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $nn->nama }}</td>
-                    <td>{{ $nn->teknik_nilai->teknik }}</td>
+                    <td>{{ $tn->teknik }}</td>
+                    <td>{{ $tn->kategori_nilai->kategori }}</td>
                     <td>
-                        <form action="/admin/master/rencana_penilaian/{{ $nn->id }}" method="POST">
-                            <button type="button" class="btn btn-success btn-sm" onclick="UpdateRencanaPenialaian({{ $nn->id }})"><i class="far fa-edit"></i></button>
+                        <form action="/admin/master/rencana_penilaian/{{ $tn->id }}" method="POST">
+                            <button type="button" class="btn btn-success btn-sm" onclick="UpdateRencanaPenialaian({{ $tn->id }})"><i class="far fa-edit"></i></button>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Syur kh?')"><i class="fas fa-trash-alt"></i>

@@ -101,6 +101,8 @@
     </tbody>
 </table>
 
+<a href="/siswa/show/nilai" class="btn btn-danger btn-sm">Kembali</a>
+
 </div>
 
 @endsection

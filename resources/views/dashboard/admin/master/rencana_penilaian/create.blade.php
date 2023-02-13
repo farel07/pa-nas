@@ -3,14 +3,14 @@
 <form action="/admin/master/rencana_penilaian" method="POST">
     @csrf
     <div class="mb-2">
-        <label class="form-label">Nama Penilaian</label>
-        <input type="text" class="form-control" name="nama">
+        <label class="form-label">Teknik Penilaian</label>
+        <input type="text" class="form-control" name="teknik">
     </div>
     <div class="mb-2">
-        <select name="teknik_nilai_id" class="form-select">
-            <option value="">Pilih Teknik Penilaian</option>
-            @foreach ($teknik as $t)
-                <option value="{{ $t->id }}">{{ $t->teknik}}</option>
+        <label for="form-label">Kategori Penilaian</label>
+        <select name="kategori_nilai_id" class="form-select">
+            @foreach ($kategori_nilai as $kn)
+                <option value="{{ $kn->id }}">{{ $kn->kategori }}</option>
             @endforeach
         </select>
     </div>

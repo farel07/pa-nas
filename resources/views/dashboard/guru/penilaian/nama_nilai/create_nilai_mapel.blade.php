@@ -11,7 +11,7 @@
 
         <select class="form-select mb-2" name="teknik_nilai_id">
             @foreach ($teknik_penilaian as $tp)
-                <option value="{{ $tp->id }}">{{ $tp->teknik }}</option>
+                <option value="{{ $tp->id }}">{{ $tp->teknik }} - {{ $tp->kategori_nilai->kategori }}</option>
             @endforeach
         </select>
 

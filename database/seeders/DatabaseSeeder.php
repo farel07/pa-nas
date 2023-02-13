@@ -142,8 +142,13 @@ class DatabaseSeeder extends Seeder
 
         //  ================ tmabah teknik pada penilaian ===============
         Teknik_Nilai::create([
-            'teknik' => 'tulis',
+            'teknik' => 'Tulis',
             'kategori_nilai_id' => 1
+        ]);
+
+        Teknik_Nilai::create([
+            'teknik' => 'Praktek',
+            'kategori_nilai_id' => 2
         ]);
 
 
@@ -156,18 +161,12 @@ class DatabaseSeeder extends Seeder
             'status' => 0
         ]);
         Nama_Nilai::create([
-            'nama' => 'Ulangan harian 2',
-            'teknik_nilai_id' => 1,
+            'nama' => 'Projek',
+            'teknik_nilai_id' => 2,
             'guru_mapel_id' => 1,
             'status' => 0
         ]);
 
-        Nama_Nilai::create([
-            'nama' => 'Ulangan harian 1',
-            'teknik_nilai_id' => 1,
-            'guru_mapel_id' => 1,
-            'status' => 0
-        ]);
 
 
 

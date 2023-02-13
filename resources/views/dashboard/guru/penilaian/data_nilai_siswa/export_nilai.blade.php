@@ -13,7 +13,9 @@
             @foreach ($nama_nilai as $s)
             <th><b>{{ $s->nama }}</b></th>
             @endforeach
-            <th>Rata-Rata</th>
+            <th>Rata-Rata Pengetahuan</th>
+            <th>Rata-Rata Keterampilan</th>
+            <th>Rata-Rata Keseluruhan</th>
         </tr>
     </thead>
     <tbody>
@@ -36,13 +38,14 @@
             
         @endforeach
         
-        @if ($avg($uk->user->id, $nama_nilai[0]->guru_mapel_id)->isEmpty())
+        @if ($avg_1($uk->user->id, $nama_nilai[0]->guru_mapel_id)->isEmpty())
             
-
+        
         @else
         
-        <td>{{ $avg($uk->user->id, $nama_nilai[0]->guru_mapel_id)[0]->avg_nilai }}</td>
-            
+        <td>{{ $avg_1($uk->user->id, $nama_nilai[0]->guru_mapel_id)[0]->avg_nilai }}</td>
+        <td>{{ $avg_2($uk->user->id, $nama_nilai[0]->guru_mapel_id)[0]->avg_nilai }}</td>
+        <td>{{ ($avg_1($uk->user->id, $nama_nilai[0]->guru_mapel_id)[0]->avg_nilai + $avg_2($uk->user->id, $nama_nilai[0]->guru_mapel_id)[0]->avg_nilai) / 2 }}</td>    
         @endif
 
         </tr>

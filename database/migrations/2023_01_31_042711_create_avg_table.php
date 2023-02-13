@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreign('mapel_id')->references('id')->on('mapel')->cascadeOnDelete()->cascadeOnUpdate();
             $table->bigInteger('guru_mapel_id')->unsigned();
             $table->foreign('guru_mapel_id')->references('id')->on('guru_mapel')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->bigInteger('kategori_nilai_id')->unsigned();
+            $table->foreign('kategori_nilai_id')->references('id')->on('kategori_nilai')->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('avg_nilai');
             $table->timestamps();
         });

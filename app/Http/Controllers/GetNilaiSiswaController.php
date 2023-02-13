@@ -62,15 +62,18 @@ class GetNilaiSiswaController extends Controller
     {   
         return view('dashboard.siswa.show.nilai.show_nilai', [
             'guru_mapel' => function($mapel_id, $kelas_id){
-                return Guru_Mapel::where('mapel_id', $mapel_id)->where('kelas_id', $kelas_id)->get()[0];
+                return Guru_Mapel::where('mapel_id', $mapel_id)->where('kelas_id', $kelas_id)->first();
             },
             'mapel' => Mapel::find($id),
             'nilai_siswa' => function($user_id, $nama_nilai_id){
                 return Nilai_Siswa::where('user_id', $user_id)->where('nama_nilai_id', $nama_nilai_id)->get();
             },
             'title' => 'Nilai Siswa',
-            'avg' => function($guru_mapel_id){
-                return AvgNilai::where('user_id', auth()->user()->id)->where('guru_mapel_id', $guru_mapel_id)->first();
+            'avg_1' => function($guru_mapel_id){
+                return AvgNilai::where('user_id', auth()->user()->id)->where('guru_mapel_id', $guru_mapel_id)->where('kategori_nilai_id', 1)->first();
+            },
+            'avg_2' => function($guru_mapel_id){
+                return AvgNilai::where('user_id', auth()->user()->id)->where('guru_mapel_id', $guru_mapel_id)->where('kategori_nilai_id', 2)->first();
             }
         ]);
     }

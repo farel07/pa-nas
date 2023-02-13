@@ -1,6 +1,6 @@
 
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" style="background-color: rgb(11, 11, 107)"  data-scroll-to-active="true" >
-        <div class="navbar-header" style="background-color: rgb(128, 128, 244)">
+        <div class="navbar-header" style="background-color: rgb(168, 168, 247)">
           <ul class="nav navbar-nav flex-row">       
             <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo rounded-circle" alt="Chameleon admin logo" src="{{ asset('storage/'. App\Models\System::find(1)->app_logo) }}"/>
                 <h3 class="brand-text">{{ App\Models\System::find(1)->app_name }}</h3></a></li>
@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item {{ Request::is('siswa/show/nilai*') ? 'active' : ''}}">
-              <a href="/siswa/show/nilai/{{ auth()->user()->kelas_user->kelas->id }}"><i class="ft-user"></i><span class="menu-title">Nilai Siswa</span></a>
+              <a href="/siswa/show/nilai"><i class="ft-user"></i><span class="menu-title">Nilai Siswa</span></a>
             </li>
 
             @endcan

@@ -125,21 +125,44 @@ class DataNilaiSiswaController extends Controller
 
     public function avg_nilai_store(Request $request, $id){
 
-        for($i = 0; $i < count($request->persentase); $i++){
+        $percent = 0;
+        for($i = 0; $i < count($request->nama_nilai_id_1); $i++){
             $request->validate([
-                'persentase.' . $i => 'required|integer|min:0|max:100'
+                'persentase_1.' . $i => 'required|integer|min:0|max:100'
             ]);
+            $percent += $request->persentase_1[$i];
+            if($percent > 100){
+                return back()->with('error','Jumlah persentase tidak lebih dari 100');
+            }
+        }
+
+        $percent = 0;
+        for($i = 0; $i < count($request->nama_nilai_id_2); $i++){
+            $request->validate([
+                'persentase_2.' . $i => 'required|integer|min:0|max:100'
+            ]);
+            $percent += $request->persentase_2[$i];
+            if($percent > 100){
+                return back()->with('error','Jumlah persentase tidak lebih dari 100');
+            }
         }
 
         // return Guru_Mapel::find($id)->avg_nilai;
         $kelas = Kelas::find(Guru_Mapel::find($id)->kelas_id);
         foreach($kelas->user_kelas as $uk){
-            $data_nilai = [];
+            $data_nilai_1 = [];
+            $data_nilai_2 = [];
             $nilai = 0;  
-            for($i = 0; $i < count($request->nama_nilai_id); $i++){
-            $nilai = Nilai_Siswa::where('user_id', $uk->user->id)->where('nama_nilai_id', $request->nama_nilai_id[$i])->get()[0]->nilai * $request->persentase[$i] / 100;
-            $data_nilai[] = $nilai;
+
+            for($i = 0; $i < count($request->nama_nilai_id_1); $i++){
+            $nilai = Nilai_Siswa::where('user_id', $uk->user->id)->where('nama_nilai_id', $request->nama_nilai_id_1[$i])->get()[0]->nilai * $request->persentase_1[$i] / 100;
+            $data_nilai_1[] = $nilai;
             }
+
+            for($i = 0; $i < count($request->nama_nilai_id_2); $i++){
+                $nilai = Nilai_Siswa::where('user_id', $uk->user->id)->where('nama_nilai_id', $request->nama_nilai_id_2[$i])->get()[0]->nilai * $request->persentase_2[$i] / 100;
+                $data_nilai_2[] = $nilai;
+                }
 
             if(AvgNilai::where('user_id', $uk->user->id)->where('guru_mapel_id', Guru_Mapel::find($id)->id)->get()->isEmpty()){
             
@@ -147,13 +170,26 @@ class DataNilaiSiswaController extends Controller
                     'user_id' => $uk->user->id,
                     'mapel_id' => Guru_Mapel::find($id)->mapel_id,
                     'guru_mapel_id' => Guru_Mapel::find($id)->id,
-                    'avg_nilai' => array_sum($data_nilai)
+                    'avg_nilai' => array_sum($data_nilai_1),
+                    'kategori_nilai_id' => 1
+                ]);
+
+                AvgNilai::create([
+                    'user_id' => $uk->user->id,
+                    'mapel_id' => Guru_Mapel::find($id)->mapel_id,
+                    'guru_mapel_id' => Guru_Mapel::find($id)->id,
+                    'avg_nilai' => array_sum($data_nilai_2),
+                    'kategori_nilai_id' => 2
                 ]);
 
             } else {
                 
-                AvgNilai::where('user_id', $uk->user->id)->where('guru_mapel_id', Guru_Mapel::find($id)->id)->update([
-                    'avg_nilai' => array_sum($data_nilai)
+                AvgNilai::where('user_id', $uk->user->id)->where('guru_mapel_id', Guru_Mapel::find($id)->id)->where('kategori_nilai_id', 1)->update([
+                    'avg_nilai' => array_sum($data_nilai_1)
+                ]);
+
+                AvgNilai::where('user_id', $uk->user->id)->where('guru_mapel_id', Guru_Mapel::find($id)->id)->where('kategori_nilai_id', 2)->update([
+                    'avg_nilai' => array_sum($data_nilai_2)
                 ]);
 
             }

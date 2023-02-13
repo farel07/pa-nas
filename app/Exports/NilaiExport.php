@@ -32,8 +32,11 @@ class NilaiExport implements FromView
             'nilai_siswa' => function($user_id, $nama_nilai_id){
                 return Nilai_Siswa::where('user_id', $user_id)->where('nama_nilai_id', $nama_nilai_id)->get();
             },
-            'avg' => function($user_id, $guru_mapel_id){
-                return AvgNilai::where('user_id', $user_id)->where('guru_mapel_id', $guru_mapel_id)->get();
+            'avg_1' => function($user_id, $guru_mapel_id){
+                return AvgNilai::where('user_id', $user_id)->where('guru_mapel_id', $guru_mapel_id)->where('kategori_nilai_id', 1)->get();
+            },
+            'avg_2' => function($user_id, $guru_mapel_id){
+                return AvgNilai::where('user_id', $user_id)->where('guru_mapel_id', $guru_mapel_id)->where('kategori_nilai_id', 2)->get();
             },
             'guru_mapel' => Guru_Mapel::find($this->guru_mapel_id)
         ]);

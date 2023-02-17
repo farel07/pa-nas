@@ -102,18 +102,18 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="background-color:rgb(233, 233, 233);">
                     <h4 class="card-title">@yield('child_title')</h4>
 
-                    <div class="heading-elements">
+                    {{-- <div class="heading-elements">
                         <ul class="list-inline mb-0">
                             <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div class="card-content collapse show">
-                    <div class="card-body">
+                    <div class="card-body" style="background-color:rgb(233, 233, 233);">
                         
                         @yield('content')
 

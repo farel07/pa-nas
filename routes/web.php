@@ -34,11 +34,11 @@ Route::get('/', function () {
     return redirect('login');
 })->middleware('guest');
 
-Route::get('/home', function () {
-    return view('dashboard.layout.new_main', [
-        'title' => 'Home'
-    ]);
-});
+// Route::get('/home', function () {
+//     return view('dashboard.layout.new_main', [
+//         'title' => 'Home'
+//     ]);
+// });
 
 // admin routes
 Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
@@ -91,7 +91,7 @@ Route::middleware(['admin', 'auth'])->prefix('/admin')->group(function () {
 });
 
 // guru routes
-Route::middleware(['guru'])->prefix('/guru')->group(function () {
+Route::middleware(['guru', 'auth'])->prefix('/guru')->group(function () {
     Route::get('/dashboard', [GuruController::class, 'index']);
     Route::prefix('/penilaian')->group(function () {
 
@@ -125,7 +125,7 @@ Route::middleware(['guru'])->prefix('/guru')->group(function () {
 });
 
 // siswa routes
-Route::middleware(['siswa'])->prefix('/siswa')->group(function () {
+Route::middleware(['siswa', 'auth'])->prefix('/siswa')->group(function () {
     Route::resource('/dashboard', ProfilSiswaController::class);
     Route::post('/dashboard/edit_pict', [ProfilSiswaController::class, 'store'])->name('change_profile');
     Route::put('/dashboard/edit_pict', [ProfilSiswaController::class, 'update'])->name('change_profile2');
@@ -139,7 +139,7 @@ Route::middleware(['siswa'])->prefix('/siswa')->group(function () {
 // auth route
 Route::get('/login', function () {
     return view('auth.login');
-})->name('login');
+})->name('login')->middleware('guest');
 
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);

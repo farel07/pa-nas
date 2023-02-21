@@ -43,6 +43,14 @@
                 <p class="text-danger">{{ $message }}</p>
                 @enderror
               </div>
+
+              <div class="form-gorup mb-3">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                @error('password')
+                <p class="text-danger">{{ $message }}</p>
+              @enderror
+              </div>
               
               <a href="/admin/master/user/guru" class="btn btn-warning">Kembali</a>
               <button type="submit" class="btn btn-primary">Edit</button>

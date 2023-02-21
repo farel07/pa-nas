@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
         
             <div class="mb-3">
                 <a href="/admin/master/list_mapel" class="btn btn-primary">List Mapel</a>
@@ -19,7 +19,7 @@
         
                 <table class="table">
                     <thead>
-                      <tr class="table-primary">
+                      <tr class="table">
                         <th scope="col">NO</th>
                         <th scope="col">NAMA KELAS</th>
                         <th scope="col">ACTION</th>
@@ -32,7 +32,7 @@
                           <th scope="row">{{ $loop->iteration }}</th>
                           <td>{{ $k->nama_kelas }}</td>
                           <td>
-                            <a href="/admin/master/kelas_mapel/{{ $k->id }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                            <a href="/admin/master/kelas_mapel/{{ $k->id }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
                           </td>
                         </tr>
         

@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         // return $request;
         $validatedData = $request->validate([
-            'name' => 'required|min:6',
+            'name' => 'required|min:4',
             'nisn_npsn' => 'required|max:12',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
@@ -122,10 +122,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|min:6',
+            'name' => 'required|min:4',
             'nisn_npsn' => 'required|max:12',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
+            // 'password' => 'min:4'
         ]);
 
         if ($request->is_siswa) {
@@ -146,6 +147,13 @@ class UserController extends Controller
         } else if ($request->is_guru) {
 
             $to = 'guru';
+        }
+
+        if ($request->password) {
+            $validatedData = $request->validate([
+                'password' => 'min:4'
+            ]);
+            $validatedData['password'] = bcrypt($validatedData['password']);
         }
 
         User::where('id', $id)->update($validatedData);

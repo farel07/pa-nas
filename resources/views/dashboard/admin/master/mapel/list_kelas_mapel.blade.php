@@ -10,7 +10,7 @@
         <a href="/admin/master/kelas_mapel/create/{{ $kelas->id }}" class="btn btn-success">Tambah Mapel</a>
     </div>
     
-    <div class="col-md-8">
+    <div class="col-md-12">
 
         @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -28,7 +28,7 @@
     
             <table class="table">
                 <thead>
-                  <tr class="table-primary">
+                  <tr class="table">
                     <th scope="col">NO</th>
                     <th scope="col">NAMA MAPEL</th>
                     <th scope="col">GURU</th>
@@ -49,12 +49,12 @@
                           @method('put')
                           @csrf
                           <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
-                          <button type="submit" class="btn btn" style="background-color: rgb(230, 113, 18)" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-user-slash"></i></button>
+                          <button type="submit" class="btn btn-sm" style="background-color: rgb(230, 113, 18)" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-user-slash"></i></button>
                       </form>
 
                         @else
                             
-                        <a href="/admin/master/kelas_mapel/assign/{{ $km->id }}" class="btn btn-success"><i class="fas fa-user-plus"></i></a>
+                        <a href="/admin/master/kelas_mapel/assign/{{ $km->id }}" class="btn btn-success btn-sm"><i class="fas fa-user-plus"></i></a>
 
                         @endif
 
@@ -62,7 +62,7 @@
                             @method('DELETE')
                             @csrf
                             <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-backspace"></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Kidz?')"><i class="fas fa-backspace"></i></button>
                         </form>
                       </td>
                     </tr>

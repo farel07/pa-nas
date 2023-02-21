@@ -36,7 +36,7 @@
                 @enderror
               </div>
 
-            <div class="form-group mb-3">
+              <div class="form-group mb-3">
                 <label for="project_name">Tanggal Lahir</label>
                 <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ old('tanggal_lahir', $user->tanggal_lahir) }}">
                 @error('tanggal_lahir')
@@ -66,6 +66,25 @@
                 <p class="text-danger">{{ $message }}</p>
                 @enderror
               </div>
+
+              {{-- <div class="form-gorup mb-3">
+                <label for="userName">Username</label>
+                <input type="text" class="form-control" name="username" id="userName" placeholder="userName" value="{{ $user->username }}">
+                @error('username')
+                <p class="text-danger">{{ $message }}</p>
+                @enderror
+              </div> --}}
+
+              <div class="form-gorup mb-3">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                @error('password')
+                <p class="text-danger">{{ $message }}</p>
+              @enderror
+              </div>
+{{-- 
+              <input type="hidden" name="password" value="{{ $user->password }}"> --}}
+
               <a href="/admin/master/user/siswa" class="btn btn-warning">Kembali</a> 
               <button type="submit" class="btn btn-primary">Edit</button>
               

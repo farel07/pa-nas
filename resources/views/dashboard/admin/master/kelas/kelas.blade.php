@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="row">
-<div class="col-md-8">
+<div class="col-md-12">
 
   <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="btn_create_kelas()">Create</button>
 
@@ -24,7 +24,7 @@
 
         <table class="table">
             <thead>
-              <tr class="table-primary">
+              <tr class="table">
                 <th scope="col">NO</th>
                 <th scope="col">NAMA KELAS</th>
                 <th scope="col">ACTION</th>

@@ -74,10 +74,11 @@
         @endif
 
         <h3 class="display-7">Nama Siswa: {{ $user->name }}</h3>
-        <h3 class="display-7">Username untuk Login: {{ $user->username }}</h3>
+        <h3 class="display-7">Username: {{ $user->username }}</h3>
+        <h3 class="display-7">NISN: {{ $user->nisn_npsn }}</h3>
         <h3 class="display-7 mb-2">Kelas: {{ $kelas->nama_kelas }}</h3>
 
-        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#gantiPassword">Ganti Password?</button>
+        {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#gantiPassword">Ganti Password?</button> --}}
     </section>
 
 {{-- @endforeach --}}

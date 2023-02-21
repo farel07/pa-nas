@@ -106,6 +106,12 @@ class DataNilaiSiswaController extends Controller
 
     public function export_nilai($id){
         $guru_mapel = Guru_Mapel::find($id);
+
+        foreach($guru_mapel->nama_nilai as $nn){
+            if($nn->nilai_siswa->isEmpty()){
+                return back()->with('error', 'Masih terdapat nilai siswa yang belum diisi');
+            }
+        }
         // return view('dashboard.guru.penilaian.data_nilai_siswa.export_nilai',[
         //     'nama_nilai' => Nama_Nilai::where('guru_mapel_id', $id)->get(),
         //     'kelas' => Kelas::find(Guru_Mapel::find($id)->kelas_id),
@@ -117,6 +123,26 @@ class DataNilaiSiswaController extends Controller
     }
 
     public function avg_nilai($id){
+
+        $pengetahuan = [];
+        $keterampilan = [];
+        foreach(Guru_Mapel::find($id)->nama_nilai as $nn){
+            if($nn->teknik_nilai->kategori_nilai_id == 1){
+                $pengetahuan[] = $nn;
+            } else if($nn->teknik_nilai->kategori_nilai_id == 2){
+                $keterampilan[] = $nn;
+            }
+            if($nn->nilai_siswa->isEmpty()){
+                return back()->with('error', 'Masih terdapat nilai siswa yang belum diisi');
+            }
+        }
+
+        if(!$pengetahuan){
+        return back()->with('error', 'Belum ada rencana penilaian dengan kategori pengetahuan');
+
+        } elseif(!$keterampilan)
+        return back()->with('error', 'Belum ada rencana penilaian dengan kategori keterampilan');
+
         return view('dashboard.guru.penilaian.data_nilai_siswa.avg_nilai', [
             'guru_mapel' => Guru_Mapel::find($id),
             'title' => 'Rata-Rata'

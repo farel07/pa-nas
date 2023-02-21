@@ -10,6 +10,13 @@
 </div>
 @endif
 
+@if (session()->has('error'))
+<div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+  {{ session('error') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <div class="col-md-4">
     <div class="input-group mb-3">
         <select class="form-select" id="inputGroupSelect01" onchange="show_nama_nilai(this)">

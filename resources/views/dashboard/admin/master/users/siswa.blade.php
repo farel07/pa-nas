@@ -47,9 +47,9 @@
                     <form action="/admin/master/user/{{ $s->id }}" method="post">
                       @csrf
                       @method('delete')
-                      <a href="/admin/master/user/{{ $s->id }}/edit" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                      <a href="/admin/master/user/{{ $s->id }}/edit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                       
-                    <button class="btn btn-danger" type="submit" onclick="return confirm('affkh anda yakin >/<')"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('affkh anda yakin >/<')"><i class="fas fa-trash"></i></button>
 
                   </form>
                   </td>
